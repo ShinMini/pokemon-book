@@ -1,4 +1,4 @@
-package poketmon.model.dto;
+package pokemon.model.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -6,12 +6,19 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Builder
 public class OwnerDTO {
-	private String ownerId;
+	private int ownerId;
 	private String ownerName;
 	private int ownerAge;
 	private String ownerTier;
+	
+	@Builder(builderMethodName = "ownerDTOBuilder")
+	public OwnerDTO(int ownerId, String ownerName, int ownerAge, String ownerTier) {
+		this.ownerId = ownerId;
+		this.ownerName = ownerName;
+		this.ownerAge = ownerAge;
+		this.ownerTier = ownerTier;
+	}
 
 	@Override
 	public String toString() {

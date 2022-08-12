@@ -2,7 +2,7 @@
  * 
  *  @ Author 김 혜 경
  */
-package poketmon.exception;
+package pokemon.exception;
 
 public class NotExistException extends Exception {
 	public NotExistException() {}

@@ -1,11 +1,11 @@
-package poketmon.controller;
+package pokemon.controller;
 
 import java.sql.SQLException;
 
-import poketmon.model.ActivistDAO;
-import poketmon.model.ProbonoDAO;
-import poketmon.model.ProbonoProjectDAO;
-import poketmon.model.dto.PoketmonBookDTO;
+import pokemon.model.PokemonDAO;
+import pokemon.model.ProbonoDAO;
+import pokemon.model.PokemonBookDAO;
+import pokemon.model.dto.PokemonBookDTO;
 import poketmon.view.RunningEndView;
 
 //현 로직 : view.RunningStrartView에서 호출 
@@ -14,7 +14,7 @@ public class ProbonoProjectController {
 	// 모든 프로젝트 검색 로직
 	public static void getAllProbonoProjects() {
 		try {
-			RunningEndView.projectListView(ProbonoProjectDAO.getAllProbonoProjects());
+			RunningEndView.projectListView(PokemonBookDAO.getAllProbonoProjects());
 		} catch (SQLException s) {
 			s.printStackTrace();
 			RunningEndView.showError("모든 프로젝트 검색시 에러 발생");
@@ -22,11 +22,11 @@ public class ProbonoProjectController {
 	}
 
 	// 새로운 프로젝트 저장 로직
-	public static boolean addProbonoProject(PoketmonBookDTO probonoProject) {
+	public static boolean addProbonoProject(PokemonBookDTO probonoProject) {
 		boolean result = false;
 
 		try {
-			result = ProbonoProjectDAO.addProbonoProject(probonoProject);
+			result = PokemonBookDAO.addProbonoProject(probonoProject);
 		} catch (SQLException s) {
 			s.printStackTrace();
 			RunningEndView.showError("모든 프로젝트 저장시 에러 발생");
@@ -37,7 +37,7 @@ public class ProbonoProjectController {
 	// 모든 프로젝트 검색 로직
 	public static void getAllActivists() {
 		try {
-			RunningEndView.activistListView(ActivistDAO.getAllActivists());
+			RunningEndView.activistListView(PokemonDAO.getAllActivists());
 		} catch (SQLException s) {
 			s.printStackTrace();
 			RunningEndView.showError("모든 재능 기부자 검색시 에러 발생");

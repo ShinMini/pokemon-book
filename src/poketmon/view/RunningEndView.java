@@ -2,20 +2,20 @@ package poketmon.view;
 
 import java.util.ArrayList;
 
-import poketmon.model.dto.PoketmonTypeDTO;
-import poketmon.model.dto.PoketmonBookDTO;
+import pokemon.model.dto.PokemonBookDTO;
+import pokemon.model.dto.PoketmonTypeDTO;
 
 public class RunningEndView {
 	
 	//모든 프로젝트 출력
-	public static void projectListView(ArrayList<PoketmonBookDTO> activistListlProbonoProject){
+	public static void projectListView(ArrayList<PokemonBookDTO> activistListlProbonoProject){
 		
 		int listSize = activistListlProbonoProject.size();
 		
 		if(listSize != 0) {
 			int count = 1;
 			
-			for(PoketmonBookDTO p : activistListlProbonoProject) {
+			for(PokemonBookDTO p : activistListlProbonoProject) {
 				// ; 정상 종료시 count 변수값 1 증가
 				System.out.println("검색 정보 " + (count++) + " - " + p); 
 			} 
@@ -40,7 +40,7 @@ public class RunningEndView {
 	}
 		
 	//특정 프로젝트 출력 
-	public static void projectView(PoketmonBookDTO project){
+	public static void projectView(PokemonBookDTO project){
 		System.out.println(project);		
 	}
 	

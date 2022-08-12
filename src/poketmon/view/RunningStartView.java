@@ -1,6 +1,6 @@
 package poketmon.view;
 
-import poketmon.controller.ProbonoProjectController;
+import pokemon.controller.ProbonoProjectController;
 
 public class RunningStartView {
 

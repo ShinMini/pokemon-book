@@ -1,7 +1,7 @@
 /* ???
  * 1. JDBC URL - mysql용이어야 합니다
  */
-package poketmon.model.util;
+package pokemon.model.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;

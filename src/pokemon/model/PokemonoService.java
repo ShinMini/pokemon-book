@@ -1,42 +1,40 @@
-package poketmon.model;
+package pokemon.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import poketmon.exception.NotExistException;
-import poketmon.model.dto.PoketmonTypeDTO;
-import poketmon.model.dto.PoketmonDTO;
-import poketmon.model.dto.PoketmonBookDTO;
-import poketmon.model.dto.RecipientDTO;
+import pokemon.exception.NotExistException;
+import pokemon.model.dto.PokemonBookDTO;
+import pokemon.model.dto.PokemonDTO;
 
 //서버 내부에서 하나의 객체수를 보장하면서 서비스하게 되는 singleton design 구조
 
-public class ProbonoService {
+public class PokemonService {
 
-	private static ProbonoService instance = new ProbonoService();
+	private static PokemonService instance = new PokemonService();
 
-	private ProbonoService() {}
+	private PokemonService() {}
 
-	public static ProbonoService getInstance() {
+	public static PokemonService getInstance() {
 		return instance;
 	}
 
-	// Probono - CRUD
-	public static void notExistProbono(String probonoId) throws NotExistException, SQLException {
-		PoketmonDTO probono = ProbonoDAO.getProbono(probonoId);
-		if (probono == null) {
-			throw new NotExistException("검색하진 재능기부 정보가 없습니다.");
+	// Poketmon - CRUD
+	public static void notExistProbono(String poketmonId) throws NotExistException, SQLException {
+		PokemonDTO poketmon = PokemonDAO.getPokemon(poketmonId);	// parameter로 유입된 id에 일치하는 poketmon 객체가 존재하지 않는 경우, 
+		if (poketmon == null) {
+			throw new NotExistException("검색하진 재능기부 정보가 없습니다.");	// throw notExitstException 호출
 		}
 	}
 
-	// 모든 probono 정보 반환
-	public static ArrayList<PoketmonDTO> getAllProbonos() throws SQLException {
-		return ProbonoDAO.getAllProbonos();
+	// 모든 Poketmon 정보 반환
+	public static ArrayList<PokemonDTO> getAllPoketmons() throws SQLException {	// PoketmonDTO type을 갖는 ArrayList 반환
+		return PokemonDAO.getAllPoketmons();
 	}
 
 	// probono id로 검색
-	public static PoketmonDTO getProbono(String probonoId) throws SQLException, NotExistException {
-		PoketmonDTO probono = ProbonoDAO.getProbono(probonoId);
+	public static PokemonDTO getPokemon(String probonoId) throws SQLException, NotExistException {
+		PokemonDTO probono = PokemonDAO.getPokemon(probonoId);
 		if (probono == null) {
 			throw new NotExistException("검색하신 재능기부 정보가 없습니다.");
 		}
@@ -44,47 +42,47 @@ public class ProbonoService {
 	}
 
 	// 새로운 probono 저장
-	public static boolean addProbono(PoketmonDTO probono) throws SQLException {
-		return ProbonoDAO.addProbono(probono);
+	public static boolean addPokemon(PokemonDTO probono) throws SQLException {
+		return PokemonDAO.addPokemon(probono);
 	}
 
 	// 기존 probono 수정
-	public static boolean updateProbono(String probonoId, String probonoPurpose)
+	public static boolean updatePokemon(String probonoId, String probonoPurpose)
 			throws SQLException, NotExistException {
-		notExistProbono(probonoId);
-		return ProbonoDAO.updateProbono(probonoId, probonoPurpose);
+		notExistPokemon(probonoId);
+		return PokemonDAO.updatePokemon(probonoId, probonoPurpose);
 	}
 
 	// probono 삭제
-	public boolean deleteProbono(String probonoId) throws SQLException, NotExistException {
-		notExistProbono(probonoId);
-		return ProbonoDAO.deleteProbono(probonoId);
+	public boolean deletePokemon(String probonoId) throws SQLException, NotExistException {
+		notExistPokemon(probonoId);
+		return PokemonDAO.deletePokemon(probonoId);
 	}
 
 	// Activist - CRUD
 	public static void notExistActivist(String activistId) throws NotExistException, SQLException {
-		PoketmonTypeDTO activist = ActivistDAO.getActivist(activistId);
+		PoketmonTypeDTO activist = PokemonDAO.getActivist(activistId);
 		if (activist == null) {
 			throw new NotExistException("검색하는 재능 기부자가 미 존재합니다.");
 		}
 	}
 
 	public static boolean addActivist(PoketmonTypeDTO activist) throws SQLException {
-		return ActivistDAO.addActivist(activist);
+		return PokemonDAO.addActivist(activist);
 	}
 
 	public static boolean updateActivist(String activistId, String major) throws SQLException, NotExistException {
 		notExistActivist(activistId);
-		return ActivistDAO.updateActivist(activistId, major);
+		return PokemonDAO.updateActivist(activistId, major);
 	}
 
 	public boolean deleteActivist(String activistId) throws SQLException, NotExistException {
 		notExistActivist(activistId);
-		return ActivistDAO.deleteActivist(activistId);
+		return PokemonDAO.deleteActivist(activistId);
 	}
 
 	public static PoketmonTypeDTO getActivist(String activistId) throws SQLException, NotExistException {
-		PoketmonTypeDTO activist = ActivistDAO.getActivist(activistId);
+		PoketmonTypeDTO activist = PokemonDAO.getActivist(activistId);
 		if (activist == null) {
 			throw new NotExistException("검색하는 재능 기부자가 미 존재합니다.");
 		}
@@ -92,7 +90,7 @@ public class ProbonoService {
 	}
 
 	public static ArrayList<PoketmonTypeDTO> getAllActivists() throws SQLException {
-		return ActivistDAO.getAllActivists();
+		return PokemonDAO.getAllActivists();
 	}
 
 	// Recipient - CRUD
@@ -128,38 +126,38 @@ public class ProbonoService {
 
 	
 	// ProjectUserDAO - CRUD
-	public static void notExistProbonoUser(int probonoUserId) throws NotExistException, SQLException {
-		PoketmonBookDTO probonoUser = ProbonoProjectDAO.getProbonoProject(probonoUserId);
+	public static void notExistPokemon(int pokemonId) throws NotExistException, SQLException {
+		PokemonBookDTO probonoUser = PokemonBookDAO.getProbonoProject(pokemonId);
 		if (probonoUser == null) {
 			throw new NotExistException("검색하는 재능기부 프로젝트가 미 존재합니다.");
 		}
 	}
 
-	public static boolean addProbonoUser(PoketmonBookDTO probonoUser) throws SQLException {
-		return ProbonoProjectDAO.addProbonoProject(probonoUser);
+	public static boolean addProbonoUser(PokemonBookDTO probonoUser) throws SQLException {
+		return PokemonBookDAO.addProbonoProject(probonoUser);
 	}
 
-	public static boolean updateProbonoUserActivist(int probonoUserId, String activistId)
+	public static boolean updatePokemonBookOwner(int PokemonOwner_id, String activistId)
 			throws SQLException, NotExistException {
-		notExistProbonoUser(probonoUserId);
-		return ProbonoProjectDAO.updateProbonoProjectActivist(probonoUserId, activistId);
+		notExistPokemonOwner(PokemonOwner_id);
+		return PokemonBookDAO.updateProbonoProjectActivist(PokemonOwner_id, activistId);
 	}
 
 	public static boolean updateProbonoUserReceive(int probonoUserId, String receiveId)
 			throws SQLException, NotExistException {
 		notExistProbonoUser(probonoUserId);
-		return ProbonoProjectDAO.updateProbonoProjectReceive(probonoUserId, receiveId);
+		return PokemonBookDAO.updateProbonoProjectReceive(probonoUserId, receiveId);
 	}
 
 	public static boolean deleteProbonoUser(int probonoUserId) throws SQLException, NotExistException {
 		notExistProbonoUser(probonoUserId);
-		return ProbonoProjectDAO.deleteProbonoProject(probonoUserId);
+		return PokemonBookDAO.deleteProbonoProject(probonoUserId);
 	}
 
 	// 프로보노프로젝트 id로 존재 유무 검색하는 메소드
-	public static PoketmonBookDTO getProbonoUser(int probonoUserId) 
+	public static PokemonBookDTO getProbonoUser(int probonoUserId) 
 			throws SQLException, NotExistException {
-		PoketmonBookDTO probonoUser = ProbonoProjectDAO.getProbonoProject(probonoUserId);
+		PokemonBookDTO probonoUser = PokemonBookDAO.getProbonoProject(probonoUserId);
 		
 		if (probonoUser == null) {
 			throw new NotExistException("검색하는 재능기부 프로젝트가 미 존재합니다.");
@@ -168,8 +166,8 @@ public class ProbonoService {
 		
 	}
 
-	public static ArrayList<PoketmonBookDTO> getAllProbonoUsers() throws SQLException {
-		return ProbonoProjectDAO.getAllProbonoProjects();
+	public static ArrayList<PokemonBookDTO> getAllProbonoUsers() throws SQLException {
+		return PokemonBookDAO.getAllProbonoProjects();
 	}
 
 }
