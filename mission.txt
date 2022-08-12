@@ -1,0 +1,11 @@
+1. 포켓몬 소유자 클래스 생성,
+
+Poketmon
+
+public class Owners extends Poketmon {
+
+private poketmon_id
+private poketmon_name
+
+
+}
