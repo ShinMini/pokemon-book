@@ -171,3 +171,63 @@ public class PokemonBookDAO {
 		return list;
 	}
 }
+	
+	
+	
+	
+	
+	/*
+	// 희돈님이 추가하신 파일 
+	public class JoinClass {
+		private int pokemonBookId;
+		private int ownerId;
+		private String ownerName;
+		private int ownerAge;
+		private String ownerTier;
+		private int pokemonId;
+		private String pokemonName;
+		private int pokemonAge;
+		private String pokemonType;
+		private int pokemonPower;
+		private int pokemonLegend;
+	public static JoinClass getPokemonBookOwner(int ownerId) throws SQLException {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			JoinClass joinClass = null;
+			
+			try {
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement(“select * from pokemonbook pb inner join pokemon p on pb.pokemonId = p.pokemonId inner join owner o on pb.ownerId = o.ownerId where p.pokemonId=?“);
+				pstmt.setInt(1, ownerId);
+				rset = pstmt.executeQuery();
+				if (rset.next()) {
+					joinClass = JoinClass.builder()
+							.pokemonBookId(rset.getInt(1))
+							.pokemonId(rset.getInt(2))
+							.pokemonName(rset.getString(5))
+							.pokemonAge(rset.getInt(6))
+							.pokemonType(rset.getString(7))
+							.pokemonPower(rset.getInt(8))
+							.pokemonLegend(rset.getInt(9))
+							.ownerId(rset.getInt(10))
+							.ownerName(rset.getString(11))
+							.ownerAge(rset.getInt(12))
+							.ownerTier(rset.getString(13))
+							.build();
+				}
+			} finally {
+				DBUtil.close(con, pstmt, rset);
+			}
+			return joinClass;
+		}
+	public static void printQuery() {
+			
+			try {
+				System.out.println(PokemonBookDAO.getPokemonBookOwner(10));
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+}
+	*/
