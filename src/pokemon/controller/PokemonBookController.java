@@ -3,7 +3,6 @@ package pokemon.controller;
 import java.sql.SQLException;
 
 import pokemon.model.PokemonDAO;
-import pokemon.model.ProbonoDAO;
 import pokemon.model.PokemonBookDAO;
 import pokemon.model.dto.PokemonBookDTO;
 import poketmon.view.RunningEndView;
@@ -65,4 +64,7 @@ public class PokemonBookController {
 			RunningEndView.showError("프로보노 id로 해당 프로보노 검색 오류 ");
 		}
 	}
+	
+	
+	
 }

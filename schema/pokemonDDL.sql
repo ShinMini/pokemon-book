@@ -26,9 +26,21 @@ CREATE TABLE owner (
  
  CREATE TABLE pokemon_book (
     pokemon_book_id                  INT  NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    CONSTRAINT pk_pokemon_book PRIMARY KEY ( pokemon_book_id  )
  );
  
+CREATE TABLE pokemon_book
+(
+    pokemon_book_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    pokemon_id INT,
+
+    owner_id INT,
+
+    FOREIGN KEY (pokemon_id) REFERENCES pokemon(pokemon_id) ON UPDATE CASCADE
+    FOREIGN KEY (owner_id) REFERENCES owner(owner_id) ON UPDATE CASCADE
+
+    CONSTRAINT pk_pokemon_book PRIMARY KEY ( pokemon_book_id  )
+);
+
+ALTER TABLE pokemon_book_id AUTO_INCREMENT = 1000;
  
-ALTER TABLE pokemon_book ADD FOREIGN KEY (pokemon_id) REFERENCES   pokemon(pokemon_id);
-ALTER TABLE pokemon_book ADD FOREIGN KEY (owner_id) REFERENCES   owner(owner_id);
