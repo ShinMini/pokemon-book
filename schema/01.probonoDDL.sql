@@ -1,52 +1,34 @@
---show databases;
+-- 테이블 생성 코드
+-- 생성하려는 table이 혹여 존재할 경우 삭제하는 명령어
+drop table IF EXISTs pokemon;
+drop table IF EXISTs owner;
+drop table IF EXISTs pokemon_book;
 
---USE playdata;
+-- pokemon, owner, pokemon_book table 생성
 
--- 재능기부 프로젝트
-DROP TABLE IF EXISTS probono_project;
-
--- 재능 기부자
-DROP TABLE IF EXISTS activist;
-
--- 재능 수혜자
-DROP TABLE IF EXISTS recipient;
+CREATE TABLE pokemon (
+    pokemon_id               INT  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    pokemon_name             VARCHAR(20) NOT NULL,
+    pokemon_feature          VARCHAR(20),
+    pokmeon_type				VARCHAR(20),
+    pokemon_power			INT,
+    pokemon_legend 			BOOLEAN,
+    CONSTRAINT pk_pokemon PRIMARY KEY ( pokemon_id )
+ );
  
--- 재능기부 정보
-DROP TABLE IF EXISTS probono;
-
-
-
-CREATE TABLE activist (
-       activist_id          	VARCHAR(20)  PRIMARY KEY,
-       name               	VARCHAR(20) NOT NULL,
-       password         	VARCHAR(20) NOT NULL,
-       major                	VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE recipient (
-       recipient_id        		VARCHAR(20) PRIMARY KEY,
-       name                		VARCHAR(20) NOT NULL,
-       password          		VARCHAR(20) NOT NULL,
-       receiveHopeContent   VARCHAR(50) NOT NULL
-);
-
-
-CREATE TABLE probono (
-       probono_id          	VARCHAR(50) PRIMARY KEY,
-       probono_name      VARCHAR(50) NOT NULL,
-       probono_purpose  	VARCHAR(200) NOT NULL
-);
-
-CREATE TABLE probono_project (
-	   probono_project_id     		INT AUTO_INCREMENT PRIMARY KEY,
-	   probono_project_name 		VARCHAR(50) NOT NULL,
-       probono_id           			VARCHAR(50) NOT NULL,       
-       activist_id          				VARCHAR(20) NOT NULL,
-       receive_id           				VARCHAR(20) NOT NULL, 
-       project_content      			VARCHAR(100) NOT NULL
-);
-
-ALTER TABLE probono_project AUTO_INCREMENT = 10000;
-ALTER TABLE probono_project  ADD FOREIGN KEY (receive_id) REFERENCES recipient  (recipient_id);
-ALTER TABLE probono_project ADD FOREIGN KEY (activist_id)  REFERENCES activist  (activist_id);
-ALTER TABLE probono_project ADD FOREIGN KEY (probono_id) REFERENCES probono  (probono_id);
+CREATE TABLE owner (
+    owner_id                  INT  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    onwer_name                VARCHAR(20),
+    owner_age                 SMALLINT,
+    owner_tier                VARCHAR(20),
+    CONSTRAINT pk_owner PRIMARY KEY ( owner_id )
+ );
+ 
+ CREATE TABLE pokemon_book (
+    pokemon_book_id                  INT  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    CONSTRAINT pk_pokemon_book PRIMARY KEY ( pokemon_book_id  )
+ );
+ 
+ 
+ALTER TABLE pokemon_book ADD FOREIGN KEY (pokemon_id) REFERENCES   pokemon(pokemon_id);
+ALTER TABLE pokemon_book ADD FOREIGN KEY (owner_id) REFERENCES   owner(owner_id);

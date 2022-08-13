@@ -5,21 +5,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import pokemon.model.dto.PokemonBookDTO;
-import poketmon.model.util.DBUtil;
+import pokemon.model.util.DBUtil;
 public class PokemonBookDAO {
 	
 	/** 저장 INSERT */
 	// 새로운 도감 저장
-	public static boolean addPokemonBook(PokemonBookDTO poketmonBook) throws SQLException {
+	public static boolean addPokemonBook(PokemonBookDTO pokemonBook) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("insert into pokemon_book values(?,?)");
-			pstmt.setInt(2, poketmonBook.getPokemonId());
-			pstmt.setInt(3, poketmonBook.getOwnerId());
+			// INSERT INTO pokemon_book (pokemon_book_id, pokemonId, ownerId) VALUES (5, 4, 12);
+			pstmt = con.prepareStatement("insert into pokemon_book values(?, ?, ?)");
+			pstmt.setInt(1, pokemonBook.getPokemonBookId());
+			pstmt.setInt(2, pokemonBook.getPokemon().getPokemonId());
+			pstmt.setInt(3, pokemonBook.getOwner().getOwnerId());
 			
-			int result = pstmt.executeUpdate();
+			int result = pstmt.executeUpdate();	// 제대로 실행이 되었을 경우.
 			if (result == 1) {
 				return true;
 			}

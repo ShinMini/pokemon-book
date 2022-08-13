@@ -1,10 +1,4 @@
-/* 	private String pokemonId;
-	private String pokemonName;
-	private String pokemonFeature;
-	private String pokemonType;
-	private int pokemonPower;
-	private String pokemonLegend;
-);  */
+//POKEMON DAO
 package pokemon.model;
 
 import java.sql.Connection;
@@ -17,7 +11,7 @@ import lombok.Builder;
 import pokemon.model.dto.PokemonDTO;
 import pokemon.model.util.DBUtil;
 
-//포켓몬 DAO 클래스
+
 public class PokemonDAO {
 	
 	// 모든 포켓몬 검색해서 반환
@@ -57,7 +51,7 @@ public class PokemonDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from pokemon where pokemonName=?");
+			pstmt = con.prepareStatement("select * from pokemon where pokemonname=?");
 			pstmt.setString(1, pokemonName);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
@@ -85,7 +79,7 @@ public class PokemonDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from pokemon where pokemonFeature=?");
+			pstmt = con.prepareStatement("select * from pokemon where pokemonfeature=?");
 			pstmt.setString(1, pokemonFeature);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
@@ -105,8 +99,58 @@ public class PokemonDAO {
 
 	
 	// 포켓몬 타입으로 검색
+	public static PokemonDTO PokemonType(String pokemonType) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		PokemonDTO pokemon2 = null;
+
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select * from pokemon where pokemontype=?");
+			pstmt.setString(1, pokemonType);
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				pokemon2 = PokemonDTO.pokemonDTOBuilder()
+							.pokemonId(rset.getInt(1))
+							.pokemonName(rset.getString(2))
+							.pokemonFeature(rset.getString(3))
+							.pokemonType(rset.getString(4))
+							.pokemonPower(rset.getInt(5))
+							.pokemonLegend(rset.getBoolean(6)).build();
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return pokemon2;
+	}
 	
 	// 능력치 검색
+	public static PokemonDTO PokemonPower(String pokemonPower) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		PokemonDTO pokemon2 = null;
+
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select * from pokemon where pokemonpower >=");
+			pstmt.setString(1, pokemonPower);
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				pokemon2 = PokemonDTO.pokemonDTOBuilder()
+							.pokemonId(rset.getInt(1))
+							.pokemonName(rset.getString(2))
+							.pokemonFeature(rset.getString(3))
+							.pokemonType(rset.getString(4))
+							.pokemonPower(rset.getInt(5))
+							.pokemonLegend(rset.getBoolean(6)).build();
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return pokemon2;
+	}
 	
 	// 포켓몬 레전드 유무로 검색
 	
@@ -116,7 +160,7 @@ public class PokemonDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("insert into activist values(?, ?, ?, ?)");
+			pstmt = con.prepareStatement("insert into activist values(?, ?, ?, ?, ?, ?)");
 			pstmt.setInt(1, pokemon.getPokemonId());
 			pstmt.setString(2, pokemon.getPokemonName());
 			pstmt.setString(3, pokemon.getPokemonFeature());
@@ -142,7 +186,7 @@ public class PokemonDAO {
 		try {
 			con = DBUtil.getConnection();
 
-			pstmt = con.prepareStatement("update pokemon set pokmonPower=? where pokemonName=?");
+			pstmt = con.prepareStatement("update pokemon set pokmonpower=? where pokemonname=?");
 			pstmt.setString(1, pokemonName);
 			pstmt.setInt(2, pokemonPower);
 
@@ -163,7 +207,7 @@ public class PokemonDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("delete from pokemon where pokemonName=?");
+			pstmt = con.prepareStatement("delete from pokemon where pokemonname=?");
 
 			pstmt.setString(1, pokemonName);
 

@@ -14,7 +14,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Builder
 @Getter
 @Setter
 public class PokemonBookDTO {
@@ -23,22 +22,35 @@ public class PokemonBookDTO {
 	
 	private int pokemonBookId;
 
-	private String pokemonId;
-	private String ownerId; 
+	private PokemonDTO pokemon;
+	private OwnerDTO owner; 
 
+	@Builder(builderMethodName = "pokemonBookDTOBuilder")
+	public PokemonBookDTO(int pokemonBookId, PokemonDTO pokemon, OwnerDTO owner) {
+		this.pokemonBookId = pokemonBookId;
+		this.pokemon = pokemon;
+		this.owner = owner;
+	}
+
+	// builder.append()	// build().setString()이런식으로 호출해야 toString이 반환되는지, 
+	// 혹은 기존 처럼 toString()이 바로 호출가능한지 여부 확인 필요 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(" 포켓몬 도감 \n 도감 index : ");
+		builder.append(" === 포켓몬 도감 === \n 도감 index : ");
+		builder.append(pokemonBookId);
 
-		// 포켓몬의 정보
-		builder.append(pokemonId);
-		PokemonDTO.pokemonDTOBuilder().toString();
+		// 포켓몬의 정보 출력
+		builder.append(pokemon.toString());
+		// PokemonDTO.pokemonDTOBuilder().toString();	빌더와 동시에 toString()을 할 필요가 없음. 
 		
 		// 오너의 정보
-		builder.append(ownerId);
-		OwnerDTO.ownerDTOBuilder().toString();
+		builder.append(owner);
+		// OwnerDTO.ownerDTOBuilder().toString();
 
 		return builder.toString();
 	}
+
+
+
 }
