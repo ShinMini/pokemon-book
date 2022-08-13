@@ -15,7 +15,7 @@ import pokemon.model.util.DBUtil;
 public class PokemonDAO {
 	
 	// 모든 포켓몬 검색해서 반환
-	public static ArrayList<PokemonDTO> getAllActivists() throws SQLException {
+	public static ArrayList<PokemonDTO> getAllPokemons() throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -179,6 +179,12 @@ public class PokemonDAO {
 		return false;
 	}
 	
+	// CREATE Required -> 주경님  * 포켓몬 id는 update X 
+	// 포켓몬 수정 1.  : 포켓몬 이름으로 검색해서 /
+	// 이름 외 다른 정보들 수정 (받아온 pokemon 객체에 있는 정보로 업데이트
+	// public static boolean updatePokemon(int PokemonId, PokemonDTO pokemon){ ... }
+
+
 	// 포켓몬 수정
 	public static boolean updatePokemon(String pokemonName, int pokemonPower) throws SQLException {
 		Connection con = null;
