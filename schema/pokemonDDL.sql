@@ -32,7 +32,7 @@ CREATE TABLE pokemon_book
 (
     pokemon_book_id INT AUTO_INCREMENT PRIMARY KEY,
 
-    pokemon_id INT NULL,
+    pokemon_id INT NOT NULL,
 
     owner_id INT NULL,
 
