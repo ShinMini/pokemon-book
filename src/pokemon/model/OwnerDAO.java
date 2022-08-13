@@ -15,7 +15,7 @@ public class OwnerDAO {
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBUtil.getConnection();
-			pstmt = conn.prepareStatement("insert into owner values (?, ?, ?, ?");
+			pstmt = conn.prepareStatement("insert into owner values (?, ?, ?, ?)");
 			pstmt.setInt(1, owner.getOwnerId());
 			pstmt.setString(2, owner.getOwnerName());
 			pstmt.setInt(3, owner.getOwnerAge());
@@ -31,14 +31,14 @@ public class OwnerDAO {
 		}
 		return false;
 	}
-	// ownerId로 검색
-	public static boolean deleteOwner(String ownerId) throws Exception {
+	// ownerId로 삭
+	public static boolean deleteOwner(int ownerId) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBUtil.getConnection();
-			pstmt = conn.prepareStatement("delete from owner where ownerid=?");
-			pstmt.setString(1, ownerId);
+			pstmt = conn.prepareStatement("delete from owner where owner_id=?");
+			pstmt.setInt(1, ownerId);
 			int i = pstmt.executeUpdate();
 			if (i == 1) {
 				return true;
@@ -52,7 +52,7 @@ public class OwnerDAO {
 	}
 	// 모든 정보 반환	function name : get Owner => getAllOwners로 수정 
 	// 수정 사유 : service와 controller에서 호출 작업시 get OwnerId와 헷갈림 + pokemonDAO와 변수명 일치
-	public static ArrayList<OwnerDTO> getAllOwners() throws Exception {
+	public static ArrayList<OwnerDTO> getAllOwners() throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -61,6 +61,8 @@ public class OwnerDAO {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement("select * from owner");
 			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<OwnerDTO>();
 			while (rset.next()) {
 				list.add(OwnerDTO.ownerDTOBuilder().ownerId(rset.getInt(1)).ownerName(rset.getString(2))
 						.ownerAge(rset.getInt(3)).ownerTier(rset.getString(4)).build());
@@ -75,14 +77,14 @@ public class OwnerDAO {
 	}
 	// 수정
 	// 해당하는 ownerId의 Tier를 수정	// ownerId type string -> int 수정
-	public static boolean updateOwner(int ownerId, String Tier) throws Exception {
+	public static boolean updateOwner(int ownerId, String tier) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("update activist set major=? where activist_id=?");
-			pstmt.setInt(1, ownerId);
-			pstmt.setString(2, Tier);
+			pstmt = con.prepareStatement("update owner set owner_tier=? where owner_id=?");
+			pstmt.setString(1, tier);
+			pstmt.setInt(2, ownerId);
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
 				return true;
@@ -92,15 +94,15 @@ public class OwnerDAO {
 		}
 		return false;
 	}
-	// ownerId로 해당하는 owner정보 검색	ownerId type string -> int 수정
-	public static OwnerDTO getOwnerId(int ownerId) throws Exception {
+	// ownerId로 해당하는 owner정보 검색
+	public static OwnerDTO getOwnerId(int ownerId) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		OwnerDTO result = null;
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from activist where ownerid=?");
+			pstmt = con.prepareStatement("select * from owner where owner_id=?");
 			pstmt.setInt(1, ownerId);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {

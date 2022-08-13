@@ -1,10 +1,14 @@
-CREATE TABLE owner 
-(
-  owner_id	int(300),
-  owner_name varchar(300),
-  owner_age int(300),
-  owner_tier varchar(300)
-);
+-- 테이블 생성은 DDL에서 했으니 테이블 생성 제거
+-- 초기화를 위한 테이블 내용 전체 삭제 추가
+
+delete from owner;
+delete from pokemon;
+delete from pokemon_book;
+
+
+
+
+
 INSERT INTO owner (owner_id,owner_name,owner_age,owner_tier) VALUES (1, 'KING', 15, 'Gold');
 INSERT INTO owner (owner_id,owner_name,owner_age,owner_tier) VALUES (2, 'BLAKE', 26, 'Silver');
 INSERT INTO owner (owner_id,owner_name,owner_age,owner_tier) VALUES (3, 'CLARK', 34, 'Platinum');
@@ -25,15 +29,6 @@ INSERT INTO owner (owner_id,owner_name,owner_age,owner_tier) VALUES (15, 'MILLER
 
 
 
-CREATE TABLE pokemon 
-(
-  pokemon_id int()300),
-  pokemon_name	varchar(300),
-  pokemon_age int(300),
-  pokemon_type	varchar(300),
-  pokemon_power int(300),
-  pokemon_legend boolean(300)
-);
 INSERT INTO pokemon (pokemon_id,pokemon_name,pokemon_age,pokemon_type,pokemon_power,pokemon_legend) VALUES (1, 'Bulbasaur', 10, 'Grass', 318, False);
 INSERT INTO pokemon (pokemon_id,pokemon_name,pokemon_age,pokemon_type,pokemon_power,pokemon_legend) VALUES (2, 'Ivysaur', 20, 'Grass', 405, False);
 INSERT INTO pokemon (pokemon_id,pokemon_name,pokemon_age,pokemon_type,pokemon_power,pokemon_legend) VALUES (3, 'Venusaur', 30, 'Grass', 525, False);
