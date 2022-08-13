@@ -25,7 +25,7 @@ CREATE TABLE owner (
  );
  
  CREATE TABLE pokemon_book (
-    pokemon_book_id                  INT  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    pokemon_book_id                INT  NOT NULL AUTO_INCREMENT PRIMARY KEY,
  );
  
 CREATE TABLE pokemon_book

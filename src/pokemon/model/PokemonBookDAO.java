@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import pokemon.model.dto.PokemonBookDTO;
 import pokemon.model.util.DBUtil;
 public class PokemonBookDAO {
+	// 전체적인 구조 pokemonDAO와 유사하게 수정 필요
 	
 	/** 저장 INSERT */
 	// 새로운 도감 저장
@@ -31,6 +32,7 @@ public class PokemonBookDAO {
 		return false;
 	}
 	
+	/* 보류
 	/** 수정 UPDATE */
 	// 포켓몬 ID로 소유자 ID 수정
 	public static boolean updatePokemonBookOwner(int pokemonId, int ownerId) throws SQLException {
@@ -50,13 +52,15 @@ public class PokemonBookDAO {
 		}
 		return false;
 	}
+	*/
 	// 소유자 ID로 포켓몬 ID 수정
-	public static boolean updatePokemonBookPokemon(int ownerId, int pokemonId) throws SQLException {
+	// 포켓몬 도감 id를 검색해 pokemon id값을 찾아 해당 도감 수정하도록 update 필요
+	public static boolean updatePokemonBook(int pokemonBookId, int ownerId, int pokemonId) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("update pokemon_book set pokemon_id=? where owner_id=?");
+			pstmt = con.prepareStatement("update pokemon_book set pokemon_book_id=? where pokemonId=?");
 			pstmt.setInt(1, ownerId);
 			pstmt.setInt(2, pokemonId);
 			int result = pstmt.executeUpdate();
@@ -169,6 +173,18 @@ public class PokemonBookDAO {
 			DBUtil.close(con, pstmt, rset);
 		}
 		return list;
+	}
+
+	// pokemon Book id 가져오는 함수 생성 필요
+	public static PokemonBookDTO getPokemonBookId(int pokemonBookId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	// 도감 index번호로 검색해 도감 정보 삭제 하는 function 생성 필요
+	public static boolean deletePokemonBook(int pokemonBookId) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
 	

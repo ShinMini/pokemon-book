@@ -52,17 +52,4 @@ INSERT INTO pokemon (pokemon_id,pokemon_name,pokemon_age,pokemon_type,pokemon_po
 
 
 
-CREATE TABLE pokemon_book
-
-(
-    pokemon_book_id INT PRIMARY KEY,
-
-    pokemon_id INT,
-
-    owner_id INT,
-
-    FOREIGN KEY (ParentID) REFERENCES pokemon(pokemon_id) ON UPDATE CASCADE
-    FOREIGN KEY (owner_id) REFERENCES owner(owner_id) ON UPDATE CASCADE
-
-);
 

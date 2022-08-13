@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import pokemon.exception.NotExistException;
+import pokemon.model.dto.OwnerDTO;
 import pokemon.model.dto.PokemonBookDTO;
 import pokemon.model.dto.PokemonDTO;
 
@@ -19,6 +20,7 @@ public class PokemonService {
 		return instance;
 	}
 
+	/*------------- === 	포켓몬 관련 service   === -------------------------*/ 
 
 	// 모든 Pokemon 정보 반환
 	public static ArrayList<PokemonDTO> getAllPokemons() throws SQLException {	// PoketmonDTO type을 갖는 ArrayList 반환
@@ -37,11 +39,11 @@ public class PokemonService {
 		return PokemonDAO.addPokemon(pokemon);
 	}
 
-	// 기존 pokemon 수정
-	public static boolean updatePokemon(String pokemonId, String probonoPurpose)
-			throws SQLException, NotExistException {
-		notExistPokemon(pokemonId);
-		return PokemonDAO.updatePokemon(pokemonId, probonoPurpose);
+
+	// 기존 pokemon 수정 (이름으로 검색해서 수정 * 이때 id값은 건드리지 말기)
+	public static boolean updatePokemon(String pokemonName, PokemonDTO pokemon) throws SQLException, NotExistException {
+		notExistPokemon(pokemonName);
+		return PokemonDAO.updatePokemon(pokemonName, pokemon);
 	}
 
 	// pokemon 삭제
@@ -52,128 +54,105 @@ public class PokemonService {
 
 
 
-	public static boolean addActivist(PoketmonTypeDTO activist) throws SQLException {
-		return PokemonDAO.addActivist(activist);
+	/*------------- === Owner 관련 Service === -----------------------------------*/
+
+	// 정상적으로 작동할 경우 true, 실패시 false 반환
+	public static boolean addOwner(OwnerDTO owner) throws SQLException {
+		return OwnerDAO.addOwner(owner);
 	}
 
-	public static boolean updateActivist(String activistId, String major) throws SQLException, NotExistException {
-		notExistActivist(activistId);
-		return PokemonDAO.updateActivist(activistId, major);
+	public static boolean updateOwner(int ownerId, String ownerTier) throws SQLException, NotExistException {
+		notExistOwner(ownerId);	// owner 하위 function들 exception 구문 체크 필요
+		return OwnerDAO.updateOwner(ownerId, ownerTier);
 	}
 
-	public boolean deleteActivist(String activistId) throws SQLException, NotExistException {
-		notExistActivist(activistId);
-		return PokemonDAO.deleteActivist(activistId);
+	public boolean deleteOwner(int ownerId) throws SQLException, NotExistException {
+		notExistOwner(ownerId);
+		return OwnerDAO.deleteOwner(ownerId);
 	}
 
-	public static PoketmonTypeDTO getActivist(String activistId) throws SQLException, NotExistException {
-		PoketmonTypeDTO activist = PokemonDAO.getActivist(activistId);
-		if (activist == null) {
-			throw new NotExistException("검색하는 재능 기부자가 미 존재합니다.");
+	public static OwnerDTO getOwner(int ownerId) throws SQLException, NotExistException {
+		OwnerDTO owner = OwnerDAO.getOwnerId(ownerId);
+		if (owner == null) {
+			throw new NotExistException("검색하는 포켓몬 마스터가 존재하지 않습니다.");
 		}
-		return activist;
+		return owner;
 	}
 
-	public static ArrayList<PoketmonTypeDTO> getAllActivists() throws SQLException {
-		return PokemonDAO.getAllActivists();
+	public static ArrayList<OwnerDTO> getAllOwners() throws SQLException {
+		return OwnerDAO.getAllOwners();
 	}
 
 
+	/*------------- === Pokemon Book 관련 Service === -----------------------------------*/
 
-	public static boolean addRecipient(RecipientDTO recipient) throws SQLException {
-		return RecipientDAO.addRecipient(recipient);
+	// 아래도 마찬가지로 PokemonDAO와 유사하게 PokemonBookDAO 수정 필요
+	public static boolean addPokemonBook(PokemonBookDTO pokemonBook) throws SQLException {
+		return PokemonBooDAO.addPokemonBook(pokemonBook);
 	}
 
-	public static boolean updateRecipient(String recipientId, String receiveHopeContent)
+	// pokemonBook update 도감 index로 검색해 해당 포켓몬 및 주인정보 수정
+	public static boolean updatePokemonBook(int pokemonBookId, int pokemonId, int ownerId)
 			throws SQLException, NotExistException {
-		notExistRecipient(recipientId);
-		return RecipientDAO.updateRecipient(recipientId, receiveHopeContent);
+		notExistPokemonBook(pokemonBookId);
+		return PokemonBookDAO.updatePokemonBook(pokemonBookId, pokemonId, ownerId);
 	}
 
-	public boolean deleteRecipient(String recipientId) throws SQLException, NotExistException {
-		notExistRecipient(recipientId);
-		return RecipientDAO.deleteRecipient(recipientId);
+	//pokemonBook delete // 도감 index로 검색해 해당 도감 삭제
+	public boolean deletePokemonBook(int pokemonBookId) throws SQLException, NotExistException {
+		notExistPokemonBook(pokemonBookId);
+		return PokemonBookDAO.deletePokemonBook(pokemonBookId);
 	}
 
-	public static RecipientDTO getRecipient(String recipientId) throws SQLException {
-		return RecipientDAO.getRecipient(recipientId);
+	// 해당 도감 기록 검색
+	public static PokemonBookDTO getPokemonBook(int pokemonBookId) throws SQLException {
+		return PokemonBookDAO.getPokemonBookId(pokemonBookId);
 	}
 
-	public static ArrayList<RecipientDTO> getAllRecipients() throws SQLException {
-		return RecipientDAO.getAllRecipients();
+	public static ArrayList<PokemonBookDTO> getAllPokemonBooks() throws SQLException {
+		return PokemonBookDAO.getAllPokemonBook();
 	}
 
-	
-
-
-	public static boolean addProbonoUser(PokemonBookDTO pokemonUser) throws SQLException {
-		return PokemonBookDAO.addProbonoProject(pokemonUser);
-	}
-
-	public static boolean updatePokemonBookOwner(int PokemonOwner_id, String activistId)
-			throws SQLException, NotExistException {
-		notExistPokemonOwner(PokemonOwner_id);
-		return PokemonBookDAO.updateProbonoProjectActivist(PokemonOwner_id, activistId);
-	}
-
-	public static boolean updateProbonoUserReceive(int pokemonUserId, String receiveId)
-			throws SQLException, NotExistException {
-		notExistProbonoUser(pokemonUserId);
-		return PokemonBookDAO.updateProbonoProjectReceive(pokemonUserId, receiveId);
-	}
-
-	public static boolean deleteProbonoUser(int pokemonUserId) throws SQLException, NotExistException {
-		notExistProbonoUser(pokemonUserId);
-		return PokemonBookDAO.deleteProbonoProject(pokemonUserId);
-	}
-
-	// 프로보노프로젝트 id로 존재 유무 검색하는 메소드
-	public static PokemonBookDTO getProbonoUser(int pokemonUserId) 
-			throws SQLException, NotExistException {
-		PokemonBookDTO pokemonUser = PokemonBookDAO.getProbonoProject(probonoUserId);
-		
-		if (pokemonUser == null) {
-			throw new NotExistException("검색하는 재능기부 프로젝트가 미 존재합니다.");
-		}
-		return pokemonUser;
-		
-	}
-
-	public static ArrayList<PokemonBookDTO> getAllProbonoUsers() throws SQLException {
-		return PokemonBookDAO.getAllProbonoProjects();
-	}
 
 
 	/***************** exist 검사 METHOD ************************/
 
-	// Poketmon - CRUD	// 이름으로 포켓몬 검색
+	// Pokemon - CRUD	// 이름으로 포켓몬 검색
 	public static void notExistPokemon(String pokemonName) throws NotExistException, SQLException {
-		PokemonDTO poketmon = PokemonDAO.getPokemonName(pokemonName);	// parameter로 유입된 id에 일치하는 poketmon 객체가 존재하지 않는 경우, 
-		if (poketmon == null) {
-			throw new NotExistException("검색하신 포켓몬 정보가 없습니다.");	// throw notExitstException 호출
+		PokemonDTO pokemon;
+		try {
+			pokemon = PokemonDAO.getPokemonName(pokemonName);	// parameter로 유입된 id에 일치하는 poketmon 객체가 존재하지 않는 경우, 
+			if (pokemon == null) {
+				throw new NotExistException("검색하신 포켓몬 정보가 없습니다.");	// throw notExitstException 호출
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
-	
+
 	// ProjectUserDAO - CRUD	// 포켓몬 도감 index 번호로 도감 번호 조회
-	public static void notExistPokemon(int pokemonBookId) throws NotExistException, SQLException {
-		PokemonBookDTO pokemonBook = PokemonBookDAO.getPokemonBookId(pokemonBookId);
-		if (pokemonUser == null) {
-			throw new NotExistException("검색하는 재능기부 프로젝트가 미 존재합니다.");
+	public static void notExistPokemonBook(int pokemonBookId) throws NotExistException, SQLException {
+		PokemonBookDTO pokemonBook;
+		try {
+			pokemonBook = PokemonBookDAO.getPokemonBookId(pokemonBookId);
+			if (pokemonBook == null) {
+				throw new NotExistException("검색하신 도감 정보가 존재하지 않습니다.");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-	
-	// Recipient - CRUD
-	public static void notExistRecipient(String recipientId) throws NotExistException, SQLException {
-		RecipientDTO recipient = RecipientDAO.getRecipient(recipientId);
-		if (recipient == null) {
-			throw new NotExistException("검색하는 재능 수해자가 미 존재합니다.");
-		}
-	}
-		// Activist - CRUD
-	public static void notExistActivist(String activistId) throws NotExistException, SQLException {
-		PoketmonTypeDTO activist = PokemonDAO.getActivist(activistId);
-		if (activist == null) {
-			throw new NotExistException("검색하는 재능 기부자가 미 존재합니다.");
+
+	// PokemonBook - CRUD 포켓몬 오너 조회
+	public static void notExistOwner(int ownerId) throws NotExistException, SQLException {
+		OwnerDTO owner;
+		try {
+			owner = OwnerDAO.getOwnerId(ownerId);
+			if (owner == null) {
+				throw new NotExistException("검색하신 포켓몬 마스터가 존재하지 않습니다.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
