@@ -32,9 +32,9 @@ CREATE TABLE pokemon_book
 (
     pokemon_book_id INT AUTO_INCREMENT PRIMARY KEY,
 
-    pokemon_id INT,
+    pokemon_id INT NULL,
 
-    owner_id INT,
+    owner_id INT NULL,
 
     FOREIGN KEY (pokemon_id) REFERENCES pokemon(pokemon_id) ON UPDATE CASCADE
     FOREIGN KEY (owner_id) REFERENCES owner(owner_id) ON UPDATE CASCADE
