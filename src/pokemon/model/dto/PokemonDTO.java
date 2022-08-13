@@ -1,3 +1,4 @@
+// POKEMON DTO
 package pokemon.model.dto;
 
 
@@ -23,6 +24,7 @@ public class PokemonDTO {
 		this.pokemonId = pokemonId;
 		this.pokemonName = pokemonName;
 		this.pokemonFeature = pokemonFeature;
+		this.pokemonType =  pokemonType;
 		this.pokemonPower = pokemonPower;
 		this.pokemonLegend = pokemonLegend;
 	}
