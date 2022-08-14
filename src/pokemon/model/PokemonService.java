@@ -28,7 +28,7 @@ public class PokemonService {
 	}
 	// Pokemon 이름으로 검색
 	public static PokemonDTO getPokemon(String pokemonName) throws SQLException, NotExistException {
-		PokemonDTO pokemon = PokemonDAO.getPokemonName(pokemonName);
+		PokemonDTO pokemon = PokemonDAO.getPokemon(pokemonName);
 		if (pokemon == null) {
 			throw new NotExistException("검색하신 포켓몬 정보가 없습니다.");
 		}
@@ -88,7 +88,7 @@ public class PokemonService {
 
 	// 아래도 마찬가지로 PokemonDAO와 유사하게 PokemonBookDAO 수정 필요
 	public static boolean addPokemonBook(PokemonBookDTO pokemonBook) throws SQLException {
-		return PokemonBooDAO.addPokemonBook(pokemonBook);
+		return PokemonBookDAO.addPokemonBook(pokemonBook);
 	}
 
 	// pokemonBook update 도감 index로 검색해 해당 포켓몬 및 주인정보 수정
