@@ -47,15 +47,16 @@ public class PokemonDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		PokemonDTO pokemon1 = null;
+		PokemonDTO pokemon = null;
 
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement("select * from pokemon where pokemonname=?");
 			pstmt.setString(1, pokemonName);
 			rset = pstmt.executeQuery();
+			
 			if (rset.next()) {
-				pokemon1 = PokemonDTO.pokemonDTOBuilder()
+				pokemon = PokemonDTO.pokemonDTOBuilder()
 							.pokemonId(rset.getInt(1))
 							.pokemonName(rset.getString(2))
 							.pokemonFeature(rset.getString(3))
@@ -66,7 +67,7 @@ public class PokemonDAO {
 		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}
-		return pokemon1;
+		return pokemon;
 	}
 
 	
@@ -75,7 +76,7 @@ public class PokemonDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		PokemonDTO pokemon2 = null;
+		PokemonDTO pokemon = null;
 
 		try {
 			con = DBUtil.getConnection();
@@ -83,7 +84,7 @@ public class PokemonDAO {
 			pstmt.setString(1, pokemonFeature);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
-				pokemon2 = PokemonDTO.pokemonDTOBuilder()
+				pokemon = PokemonDTO.pokemonDTOBuilder()
 							.pokemonId(rset.getInt(1))
 							.pokemonName(rset.getString(2))
 							.pokemonFeature(rset.getString(3))
@@ -94,7 +95,7 @@ public class PokemonDAO {
 		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}
-		return pokemon2;
+		return pokemon;
 	}
 
 	
@@ -103,7 +104,7 @@ public class PokemonDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		PokemonDTO pokemon2 = null;
+		PokemonDTO pokemon = null;
 
 		try {
 			con = DBUtil.getConnection();
@@ -111,7 +112,7 @@ public class PokemonDAO {
 			pstmt.setString(1, pokemonType);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
-				pokemon2 = PokemonDTO.pokemonDTOBuilder()
+				pokemon = PokemonDTO.pokemonDTOBuilder()
 							.pokemonId(rset.getInt(1))
 							.pokemonName(rset.getString(2))
 							.pokemonFeature(rset.getString(3))
@@ -122,7 +123,7 @@ public class PokemonDAO {
 		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}
-		return pokemon2;
+		return pokemon;
 	}
 	
 	// 능력치 검색
@@ -130,7 +131,7 @@ public class PokemonDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		PokemonDTO pokemon2 = null;
+		PokemonDTO pokemon = null;
 
 		try {
 			con = DBUtil.getConnection();
@@ -138,7 +139,7 @@ public class PokemonDAO {
 			pstmt.setString(1, pokemonPower);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
-				pokemon2 = PokemonDTO.pokemonDTOBuilder()
+				pokemon = PokemonDTO.pokemonDTOBuilder()
 							.pokemonId(rset.getInt(1))
 							.pokemonName(rset.getString(2))
 							.pokemonFeature(rset.getString(3))
@@ -149,7 +150,7 @@ public class PokemonDAO {
 		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}
-		return pokemon2;
+		return pokemon;
 	}
 	
 	// 포켓몬 레전드 유무로 검색
@@ -226,6 +227,11 @@ public class PokemonDAO {
 			DBUtil.close(con, pstmt);
 		}
 		return false;
+	}
+
+	public static PokemonDTO getPokemon(int int1) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

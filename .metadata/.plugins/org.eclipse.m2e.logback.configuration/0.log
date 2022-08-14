@@ -1,0 +1,59 @@
+2022-08-14 15:24:41,195 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2022-08-14 15:26:57,102 [Worker-11: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: playdata:step11_JDBCMission:0.0.1-SNAPSHOT @ C:\Class\08_Java\step11_JDBCMission\pom.xml.
+2022-08-14 15:26:57,103 [Worker-9: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: playdata:step11_JDBCMission:0.0.1-SNAPSHOT @ C:\Class\08_Java\pdJavaMiniProject1\miniproject\java_miniprojet_from git_01\pom.xml.
+2022-08-14 15:26:59,406 [Worker-9: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:26:59,408 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\pdJavaMiniProject1\miniproject\java_miniprojet_from git_01\src\main\resources
+2022-08-14 15:26:59,418 [Worker-9: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:26:59,420 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\pdJavaMiniProject1\miniproject\java_miniprojet_from git_01\src\test\resources
+2022-08-14 15:27:00,067 [Worker-4: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:27:00,069 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\pdJavaMiniProject1\miniproject\java_miniprojet_from git_01\src\main\resources
+2022-08-14 15:27:00,088 [Worker-4: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:27:00,090 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\pdJavaMiniProject1\miniproject\java_miniprojet_from git_01\src\test\resources
+2022-08-14 15:27:00,641 [Worker-9: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: playdata:step11_JDBCMission:0.0.1-SNAPSHOT @ C:\Class\08_Java\step11_JDBCMission\pom.xml.
+2022-08-14 15:27:01,351 [Worker-8: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: playdata:step11_JDBCMission:0.0.1-SNAPSHOT @ C:\Class\08_Java\step11_JDBCMiniproject\pom.xml.
+2022-08-14 15:27:01,442 [Worker-8: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:27:01,443 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\step11_JDBCMiniproject\src\main\resources
+2022-08-14 15:27:01,444 [Worker-8: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:27:01,446 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\step11_JDBCMiniproject\src\test\resources
+2022-08-14 15:27:01,892 [Worker-8: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:27:01,894 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\step11_JDBCMission\src\main\resources
+2022-08-14 15:27:01,895 [Worker-8: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:27:01,897 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\step11_JDBCMission\src\test\resources
+2022-08-14 15:27:03,302 [Worker-8: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:27:03,303 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\step11_JDBCMiniproject\src\main\resources
+2022-08-14 15:27:03,306 [Worker-8: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:27:03,308 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\step11_JDBCMiniproject\src\test\resources
+2022-08-14 15:27:35,683 [Worker-11: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: playdata:step11_JDBCMission:0.0.1-SNAPSHOT @ C:\Class\08_Java\java_miniprojet_from git_01\project_group2\pom.xml.
+2022-08-14 15:27:35,762 [Worker-11: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:27:35,763 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\java_miniprojet_from git_01\project_group2\src\main\resources
+2022-08-14 15:27:35,765 [Worker-11: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:27:35,766 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\java_miniprojet_from git_01\project_group2\src\test\resources
+2022-08-14 15:27:37,179 [Worker-2: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:27:37,181 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\java_miniprojet_from git_01\project_group2\src\main\resources
+2022-08-14 15:27:37,183 [Worker-2: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:27:37,184 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\java_miniprojet_from git_01\project_group2\src\test\resources
+2022-08-14 15:28:05,303 [Worker-8: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: playdata:step11_JDBCMission:0.0.1-SNAPSHOT @ C:\Class\08_Java\java_miniprojet_from git_01\git_minproject_01\pom.xml.
+2022-08-14 15:28:05,380 [Worker-8: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:28:05,382 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\java_miniprojet_from git_01\git_minproject_01\src\main\resources
+2022-08-14 15:28:05,387 [Worker-8: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:28:05,390 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\java_miniprojet_from git_01\git_minproject_01\src\test\resources
+2022-08-14 15:28:06,697 [Worker-3: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:28:06,699 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\java_miniprojet_from git_01\git_minproject_01\src\main\resources
+2022-08-14 15:28:06,700 [Worker-3: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:28:06,701 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\java_miniprojet_from git_01\git_minproject_01\src\test\resources
+2022-08-14 15:28:52,989 [Worker-11: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:28:52,990 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\java_miniprojet_from git_01\git_minproject_01\src\main\resources
+2022-08-14 15:28:52,992 [Worker-11: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:28:52,993 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\java_miniprojet_from git_01\git_minproject_01\src\test\resources
+2022-08-14 15:28:53,222 [Worker-11: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:28:53,223 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\step11_JDBCMiniproject\src\main\resources
+2022-08-14 15:28:53,225 [Worker-11: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:28:53,227 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\step11_JDBCMiniproject\src\test\resources
+2022-08-14 15:28:53,472 [Worker-11: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:28:53,473 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\step11_JDBCMission\src\main\resources
+2022-08-14 15:28:53,474 [Worker-11: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:28:53,475 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\step11_JDBCMission\src\test\resources
+2022-08-14 15:28:54,522 [Worker-2: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:28:54,527 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\java_miniprojet_from git_01\git_minproject_01\src\main\resources
+2022-08-14 15:28:54,532 [Worker-2: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-08-14 15:28:54,536 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Class\08_Java\java_miniprojet_from git_01\git_minproject_01\src\test\resources

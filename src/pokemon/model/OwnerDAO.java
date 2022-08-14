@@ -31,8 +31,13 @@ public class OwnerDAO {
 		}
 		return false;
 	}
+<<<<<<< Updated upstream
 	// ownerId로 검색
 	public static boolean deleteOwner(String ownerId) throws Exception {
+=======
+	// ownerId로 삭제
+	public static boolean deleteOwner(int ownerId) throws SQLException {
+>>>>>>> Stashed changes
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -92,8 +97,13 @@ public class OwnerDAO {
 		}
 		return false;
 	}
+<<<<<<< Updated upstream
 	// ownerId로 해당하는 owner정보 검색	ownerId type string -> int 수정
 	public static OwnerDTO getOwnerId(int ownerId) throws Exception {
+=======
+	// ownerId로 해당하는 owner정보 검색
+	public static OwnerDTO getOwner(int ownerId) throws SQLException {
+>>>>>>> Stashed changes
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -112,5 +122,6 @@ public class OwnerDAO {
 		}
 		return result;
 	}
+
 	
 }

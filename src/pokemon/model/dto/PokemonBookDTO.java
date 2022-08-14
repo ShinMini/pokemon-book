@@ -45,11 +45,13 @@ public class PokemonBookDTO {
 		// PokemonDTO.pokemonDTOBuilder().toString();	빌더와 동시에 toString()을 할 필요가 없음. 
 		
 		// 오너의 정보
-		builder.append(owner);
+		builder.append(owner.toString());
 		// OwnerDTO.ownerDTOBuilder().toString();
 
 		return builder.toString();
 	}
+
+	
 
 
 
