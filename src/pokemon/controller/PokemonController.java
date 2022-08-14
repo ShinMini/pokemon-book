@@ -2,30 +2,32 @@ package pokemon.controller;
 
 import java.sql.SQLException;
 
-import pokemon.model.PokemonDAO;
 import pokemon.model.PokemonBookDAO;
+import pokemon.model.PokemonDAO;
+import pokemon.model.dto.OwnerDTO;
 import pokemon.model.dto.PokemonBookDTO;
+import pokemon.model.dto.PokemonDTO;
 import poketmon.view.RunningEndView;
 
 //현 로직 : view.RunningStrartView에서 호출 
 public class PokemonController {
 
-	// 모든 프로젝트 검색 로직
-	public static void getAllProbonoProjects() {
+	// 모든 포켓몬 도감 검색 로직
+	public static void getAllPokemonBooks() {
 		try {
-			RunningEndView.projectListView(PokemonBookDAO.getAllProbonoProjects());
+			RunningEndView.projectListView(PokemonBookDAO.getAllPokemonBook());
 		} catch (SQLException s) {
 			s.printStackTrace();
 			RunningEndView.showError("모든 프로젝트 검색시 에러 발생");
 		}
 	}
 
-	// 새로운 프로젝트 저장 로직
-	public static boolean addProbonoProject(PokemonBookDTO probonoProject) {
+	// 새로운 포켓몬 도감에 추가(저장)하는 로직
+	public static boolean addPokemonBook(PokemonBookDTO pokemonBook) {
 		boolean result = false;
 
 		try {
-			result = PokemonBookDAO.addProbonoProject(probonoProject);
+			result = PokemonBookDAO.addPokemonBook(pokemonBook);
 		} catch (SQLException s) {
 			s.printStackTrace();
 			RunningEndView.showError("모든 프로젝트 저장시 에러 발생");
@@ -33,8 +35,8 @@ public class PokemonController {
 		return result;
 	}
 
-	// 모든 프로젝트 검색 로직
-	public static void getAllActivists() {
+	// 모든 포켓몬 검색 로직
+	public static void getPoketmon() {
 		try {
 			RunningEndView.activistListView(PokemonDAO.getAllActivists());
 		} catch (SQLException s) {
@@ -43,14 +45,26 @@ public class PokemonController {
 		}
 	}
 
-	// 프로보노 아이디로 프로보노 목적 수정
-	public static boolean updateProbono(String probonoId, String probonoPurpose) {
+	// pokemon 도감 index에 기록된 포켓몬(Pokemon) 정보 수정
+	public static boolean updatePokemonBookPokemon(int pokemonBookId, PokemonDTO pokemon) {
 		boolean result = false;
 		try {
-			result = ProbonoDAO.updateProbono(probonoId, probonoPurpose);
+			result = PokemonBookDAO.updatePokemonBookPokemon(pokemonBookId, pokemon);	// 포켓몬 도감 index정보를 받아 해당 도감에 기록된 포켓몬 정보 수정
 		} catch (SQLException s) {
 			s.printStackTrace();
-			RunningEndView.showError("프로보노 id로 프로보노 목적 변경 오류");
+			RunningEndView.showError("해당 [" + Integer.toString(pokemonBookId) + "]index의 포켓몬 정보 수정 실패");
+		}
+		return result;
+	}
+
+	// pokemon 도감 index에 기록된 포켓몬 주인(Owner) 정보 수정
+	public static boolean updatePokemonBookOwner(int pokemonBookId, OwnerDTO owner) {
+		boolean result = false;
+		try {
+			result = PokemonBookDAO.updatePokemonBookOwner(pokemonBookId, owner);	// 포켓몬 도감 index정보를 받아 해당 도감에 기록된 포켓몬 주인(Owner)정보 수정
+		} catch (SQLException s) {
+			s.printStackTrace();
+			RunningEndView.showError("해당 [" + Integer.toString(pokemonBookId) + "]index의 포켓몬 주인(Owner) 정보 수정 실패");
 		}
 		return result;
 	}
