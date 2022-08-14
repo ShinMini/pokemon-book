@@ -8,7 +8,7 @@ import pokemon.model.dto.PokemonBookDTO;
 import poketmon.view.RunningEndView;
 
 //현 로직 : view.RunningStrartView에서 호출 
-public class PokemonBookController {
+public class PokemonController {
 
 	// 모든 프로젝트 검색 로직
 	public static void getAllProbonoProjects() {
