@@ -68,7 +68,7 @@ public class RunningEndView {
 			if(listSize != 0) {
 				int count = 1;
 				for(PokemonBookDTO p : pokemonBookList) {
-					System.out.println("검색 정보 " + (count++) + " - " + a);
+					System.out.println("검색 정보 " + (count++) + " - " + p);
 				}
 			} else {
 				System.out.println("검색 정보 0");
