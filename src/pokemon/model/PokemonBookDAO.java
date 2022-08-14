@@ -32,9 +32,9 @@ public class PokemonBookDAO {
 		return false;
 	}
 	
-	/* 보류
 	/** 수정 UPDATE */
 	// 포켓몬 ID로 소유자 ID 수정
+	/* 보류
 	public static boolean updatePokemonBookOwner(int pokemonId, int ownerId) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
