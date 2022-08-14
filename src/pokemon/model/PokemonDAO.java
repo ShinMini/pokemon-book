@@ -7,14 +7,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import lombok.Builder;
 import pokemon.model.dto.PokemonDTO;
 import pokemon.model.util.DBUtil;
 
 
 public class PokemonDAO {
+	// 희돈님이 보내주신 파일대로 교체 완료
 	
-	// 모든 포켓몬 검색해서 반환
+	/*	수정 사항_(완)
+	*  Feature 일괄적으로 Age로 변경
+	* sql문 변경된것과 일치하게 변경
+	모든 포켓몬 검색해서 반환
+	*/ 
 	public static ArrayList<PokemonDTO> getAllPokemons() throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -31,7 +35,7 @@ public class PokemonDAO {
 				all.add(PokemonDTO.pokemonDTOBuilder()
 									.pokemonId(rset.getInt(1))
 									.pokemonName(rset.getString(2))
-									.pokemonFeature(rset.getString(3))
+									.pokemonAge(rset.getInt(3))
 									.pokemonType(rset.getString(4))
 									.pokemonPower(rset.getInt(5))
 									.pokemonLegend(rset.getBoolean(6)).build());
@@ -43,7 +47,7 @@ public class PokemonDAO {
 	}
 	
 	// 포켓몬 이름으로 검색
-	public static PokemonDTO getPokemonName(String pokemonName) throws SQLException {
+	public static PokemonDTO getPokemon(String pokemonName) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -51,14 +55,14 @@ public class PokemonDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from pokemon where pokemonname=?");
+			pstmt = con.prepareStatement("select * from pokemon where pokemon_name=?");
 			pstmt.setString(1, pokemonName);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
 				pokemon1 = PokemonDTO.pokemonDTOBuilder()
 							.pokemonId(rset.getInt(1))
 							.pokemonName(rset.getString(2))
-							.pokemonFeature(rset.getString(3))
+							.pokemonAge(rset.getInt(3))
 							.pokemonType(rset.getString(4))
 							.pokemonPower(rset.getInt(5))
 							.pokemonLegend(rset.getBoolean(6)).build();
@@ -71,7 +75,8 @@ public class PokemonDAO {
 
 	
 	// 포켓몬 특징으로 검색
-	public static PokemonDTO PokemonFeature(String pokemonFeature) throws SQLException {
+	// 나이가 같은 포켓몬 한명만 검색할것인지? 아니면 전체 다 검색할것인지?
+	public static PokemonDTO pokemonAge(int pokemonAge) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -79,14 +84,14 @@ public class PokemonDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from pokemon where pokemonfeature=?");
-			pstmt.setString(1, pokemonFeature);
+			pstmt = con.prepareStatement("select * from pokemon where pokemon_age=?");
+			pstmt.setInt(1, pokemonAge);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
 				pokemon2 = PokemonDTO.pokemonDTOBuilder()
 							.pokemonId(rset.getInt(1))
 							.pokemonName(rset.getString(2))
-							.pokemonFeature(rset.getString(3))
+							.pokemonAge(rset.getInt(3))
 							.pokemonType(rset.getString(4))
 							.pokemonPower(rset.getInt(5))
 							.pokemonLegend(rset.getBoolean(6)).build();
@@ -99,7 +104,8 @@ public class PokemonDAO {
 
 	
 	// 포켓몬 타입으로 검색
-	public static PokemonDTO PokemonType(String pokemonType) throws SQLException {
+	// 타입이 같은 포켓몬 모두 검색할려면 while문으로 리스트에 넣어서 출력해야 할듯
+	public static PokemonDTO pokemonType(String pokemonType) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -107,14 +113,14 @@ public class PokemonDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from pokemon where pokemontype=?");
+			pstmt = con.prepareStatement("select * from pokemon where pokemon_type=?");
 			pstmt.setString(1, pokemonType);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
 				pokemon2 = PokemonDTO.pokemonDTOBuilder()
 							.pokemonId(rset.getInt(1))
 							.pokemonName(rset.getString(2))
-							.pokemonFeature(rset.getString(3))
+							.pokemonAge(rset.getInt(3))
 							.pokemonType(rset.getString(4))
 							.pokemonPower(rset.getInt(5))
 							.pokemonLegend(rset.getBoolean(6)).build();
@@ -126,7 +132,8 @@ public class PokemonDAO {
 	}
 	
 	// 능력치 검색
-	public static PokemonDTO PokemonPower(String pokemonPower) throws SQLException {
+	// 이상인 포켓몬 모두 검색할려면 while문으로 리스트에 넣어서 출력해야 할듯
+	public static PokemonDTO pokemonPower(int pokemonPower) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -134,14 +141,14 @@ public class PokemonDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from pokemon where pokemonpower >=");
-			pstmt.setString(1, pokemonPower);
+			pstmt = con.prepareStatement("select * from pokemon where pokemon_power >=?");
+			pstmt.setInt(1, pokemonPower);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
 				pokemon2 = PokemonDTO.pokemonDTOBuilder()
 							.pokemonId(rset.getInt(1))
 							.pokemonName(rset.getString(2))
-							.pokemonFeature(rset.getString(3))
+							.pokemonAge(rset.getInt(3))
 							.pokemonType(rset.getString(4))
 							.pokemonPower(rset.getInt(5))
 							.pokemonLegend(rset.getBoolean(6)).build();
@@ -160,10 +167,10 @@ public class PokemonDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("insert into activist values(?, ?, ?, ?, ?, ?)");
+			pstmt = con.prepareStatement("insert into pokemon values(?, ?, ?, ?, ?, ?)");
 			pstmt.setInt(1, pokemon.getPokemonId());
 			pstmt.setString(2, pokemon.getPokemonName());
-			pstmt.setString(3, pokemon.getPokemonFeature());
+			pstmt.setInt(3, pokemon.getPokemonAge());
 			pstmt.setString(4, pokemon.getPokemonType());
 			pstmt.setInt(5, pokemon.getPokemonPower());
 			pstmt.setBoolean(6, pokemon.isPokemonLegend());
@@ -192,9 +199,9 @@ public class PokemonDAO {
 		try {
 			con = DBUtil.getConnection();
 
-			pstmt = con.prepareStatement("update pokemon set pokmonpower=? where pokemonname=?");
-			pstmt.setString(1, pokemonName);
-			pstmt.setInt(2, pokemonPower);
+			pstmt = con.prepareStatement("update pokemon set pokemon_power=? where pokemon_name=?");
+			pstmt.setInt(1, pokemonPower);
+			pstmt.setString(2, pokemonName);
 
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
@@ -213,7 +220,7 @@ public class PokemonDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("delete from pokemon where pokemonname=?");
+			pstmt = con.prepareStatement("delete from pokemon where pokemon_name=?");
 
 			pstmt.setString(1, pokemonName);
 
