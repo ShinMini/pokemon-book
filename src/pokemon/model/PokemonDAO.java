@@ -51,7 +51,7 @@ public class PokemonDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		PokemonDTO pokemon1 = null;
+		PokemonDTO pokemon = null;
 
 		try {
 			con = DBUtil.getConnection();
@@ -59,7 +59,7 @@ public class PokemonDAO {
 			pstmt.setString(1, pokemonName);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
-				pokemon1 = PokemonDTO.pokemonDTOBuilder()
+				pokemon = PokemonDTO.pokemonDTOBuilder()
 							.pokemonId(rset.getInt(1))
 							.pokemonName(rset.getString(2))
 							.pokemonAge(rset.getInt(3))
@@ -70,7 +70,33 @@ public class PokemonDAO {
 		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}
-		return pokemon1;
+		return pokemon;
+	}
+	// 포켓몬 id로 검색
+	public static PokemonDTO getPokemon(int pokemonId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		PokemonDTO pokemon = null;
+
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select * from pokemon where pokemon_id=?");
+			pstmt.setInt(1, pokemonId);
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				pokemon = PokemonDTO.pokemonDTOBuilder()
+							.pokemonId(rset.getInt(1))
+							.pokemonName(rset.getString(2))
+							.pokemonAge(rset.getInt(3))
+							.pokemonType(rset.getString(4))
+							.pokemonPower(rset.getInt(5))
+							.pokemonLegend(rset.getBoolean(6)).build();
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return pokemon;
 	}
 
 	

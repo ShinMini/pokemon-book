@@ -8,7 +8,6 @@ import pokemon.model.dto.PokemonDTO;
 public class RunningStartView {
 	// 희돈님이 보내주신 파일로 수정 완료
 
-
 	public static void main(String[] args) {
 		printQuery();
 	}
