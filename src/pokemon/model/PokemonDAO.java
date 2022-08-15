@@ -47,7 +47,7 @@ public class PokemonDAO {
 	}
 	
 	// 포켓몬 이름으로 검색
-	public static PokemonDTO getPokemon(String pokemonName) throws SQLException {
+	public static PokemonDTO getPokemonName(String pokemonName) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -73,7 +73,7 @@ public class PokemonDAO {
 		return pokemon;
 	}
 	// 포켓몬 id로 검색
-	public static PokemonDTO getPokemon(int pokemonId) throws SQLException {
+	public static PokemonDTO getPokemonId(int pokemonId) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
