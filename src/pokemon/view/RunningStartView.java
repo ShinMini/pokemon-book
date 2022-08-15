@@ -1,9 +1,10 @@
-package poketmon.view;
+package pokemon.view;
 
 // import pokemon.controller.OwnerController;
 // import pokemon.controller.PokemonController;
 import pokemon.model.dto.OwnerDTO;
 import pokemon.model.dto.PokemonDTO;
+import pokemon.controller.PokemonController;
 
 public class RunningStartView {
 	// 희돈님이 보내주신 파일로 수정 완료

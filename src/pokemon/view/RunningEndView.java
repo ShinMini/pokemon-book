@@ -1,4 +1,4 @@
-package poketmon.view;
+package pokemon.view;
 
 import java.util.ArrayList;
 
