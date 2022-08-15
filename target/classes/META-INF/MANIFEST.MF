@@ -1,13 +1,5 @@
-<<<<<<< Updated upstream
 Manifest-Version: 1.0
 Built-By: gusal
 Build-Jdk: 16.0.2
 Created-By: Maven Integration for Eclipse
 
-=======
-Manifest-Version: 1.0
-Built-By: playdata
-Build-Jdk: 16.0.2
-Created-By: Maven Integration for Eclipse
-
->>>>>>> Stashed changes
