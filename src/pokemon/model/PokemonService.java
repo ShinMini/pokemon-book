@@ -106,7 +106,7 @@ public class PokemonService {
 
 	/***************** [CHECK EXIST CORRECTED VAILD] ************************/
 
-	// Pokemon - CRUD	// 해당 포켓몬 아이디를 가진 정보가 유효한지 검사
+	// [POKEMON - CRUD]	// 포켓몬 id 유효 검사
 	public static void notExistPokemon(int pokemonId) throws NotExistException, SQLException {
 		PokemonDTO pokemon;
 		try {
@@ -118,7 +118,7 @@ public class PokemonService {
 			e.printStackTrace();
 		}
 	}
-	// Pokemon - CRUD	// 해당 포켓몬 이름을 가진 정보가 유효한지 검사
+	// [POKEMON - CRUD]	// 포켓몬 name 유효 검사
 	public static void notExistPokemon(String pokemonName) throws NotExistException, SQLException {
 		PokemonDTO pokemon;
 		try {
@@ -131,20 +131,7 @@ public class PokemonService {
 		}
 	}
 
-	// ProjectUserDAO - CRUD	// 포켓몬 도감 index 번호로 도감 번호 조회
-	public static void notExistPokemonBook(int pokemonBookId) throws NotExistException, SQLException {
-		PokemonBookDTO pokemonBook;
-		try {
-			pokemonBook = PokemonBookDAO.getPokemonBookId(pokemonBookId);
-			if (pokemonBook == null) {
-				throw new NotExistException("검색하신 도감 정보가 존재하지 않습니다.");
-			}
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	// PokemonBook - CRUD 포켓몬 오너 id로 조회
+	// [OWNER - CRUD] 포켓몬 오너 id 유효 검사 
 	public static void notExistOwner(int ownerId) throws NotExistException, SQLException {
 		OwnerDTO owner;
 		try {
@@ -156,7 +143,7 @@ public class PokemonService {
 			e.printStackTrace();
 		}
 	}
-	// PokemonBook - CRUD 포켓몬 오너 name으로 조회
+	// [OWNER - CRUD] 포켓몬 오너 name 유효 검사
 	public static void notExistOwner(String ownerName) throws NotExistException, SQLException {
 		OwnerDTO owner;
 		try {
@@ -165,6 +152,19 @@ public class PokemonService {
 				throw new NotExistException("검색하신 포켓몬 마스터가 존재하지 않습니다.");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// [POKEMON BOOK - CRUD] 포켓몬 도감 index 유효 검사
+	public static void notExistPokemonBook(int pokemonBookId) throws NotExistException, SQLException {
+		PokemonBookDTO pokemonBook;
+		try {
+			pokemonBook = PokemonBookDAO.getPokemonBookId(pokemonBookId);
+			if (pokemonBook == null) {
+				throw new NotExistException("검색하신 도감 정보가 존재하지 않습니다.");
+			}
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
