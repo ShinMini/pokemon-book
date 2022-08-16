@@ -52,13 +52,13 @@ public class PokemonService {
 		return OwnerDAO.updateOwner(ownerId, toUpdate, updateCoulmn);
 	}
 	//[DELETE] owner id로 검색해 해당 owner 정보 삭제
-	public boolean deleteOwner(String ownerId) throws SQLException, NotExistException {
+	public static boolean deleteOwner(String ownerId) throws SQLException, NotExistException {
 		notExistOwner("id", ownerId);
 		return OwnerDAO.deleteOwner(ownerId);
 	}
 	// [READ] owner id와 일치하는 owner 정보 검색
 	public static OwnerDTO getOwner(int ownerId) throws SQLException, NotExistException {
-		return OwnerDAO.getOwnerId(ownerId);
+		return OwnerDAO.getOwner(ownerId);
 	}
 	// [READ] 모든 owner 정보 검색
 	public static ArrayList<OwnerDTO> getAllOwners() throws SQLException {

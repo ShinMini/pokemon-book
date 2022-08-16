@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import pokemon.exception.NotExistException;
 import pokemon.model.PokemonService;
 
 //현 로직 : view.RunningStrartView에서 호출 
@@ -12,7 +13,7 @@ public class PokemonController {
 	public static PokemonService PS = new PokemonService();
 
 
-	public static void control(int mainOption) {
+	public static void control(int mainOption) throws SQLException, NotExistException {
 		int subOption = 0;
 
 		subOption = getOption(mainOption);
@@ -41,13 +42,16 @@ public class PokemonController {
 
 
 	// 1번 -> pokemonBook, 2번 -> pokemon, 3번 -> owner
-	public static void callServiceClass(int mainOption, int subOption) throws SQLException {
+	public static void callServiceClass(int mainOption, int subOption) throws SQLException, NotExistException {
 		if(mainOption == 1) {
 			// pokemonBook 사용할 거임.
 			pokemonBookSelected(subOption);
 		}		
 		if(mainOption == 2) {
 			pokemonSelected(subOption);
+		}
+		if(mainOption == 3) {
+			ownerSelected(subOption);
 		}
 	}
 
@@ -65,10 +69,9 @@ public class PokemonController {
 			break;
 		}
 	}
-	public static void pokemonSelected(int subOption) throws SQLException {
+	public static void pokemonSelected(int subOption) throws SQLException, NotExistException {
 		String pokemonId;
 		int inputColumn =0;
-		String changeColumn = "";
 		String[] changeColumns = {"name", "age", "type", "power", "legend"};
 
 		switch (subOption) {
@@ -94,6 +97,41 @@ public class PokemonController {
 			System.out.println("삭제하실 포켓몬 아이디를 입력해주세요.");
 			pokemonId = sc.nextLine();
 			PokemonService.deletePokemon(pokemonId);
+			break;
+
+		default:
+			break;
+		}
+	}
+	
+	public static void ownerSelected(int subOption) throws SQLException, NotExistException {
+		String ownerId;
+		int inputColumn =0;
+		String[] changeColumns = {"name", "age", "type", "power", "legend"};
+
+		switch (subOption) {
+		case 1 ://  모든 테이블 검색
+			PokemonService.getAllPokemons();
+			break;
+		case 2 ://  포켓몬 id로 포켓몬 정보수정하기
+			System.out.println("\n =========== 포켓몬 id로 포켓몬 정보 수정하기 ============== \n");
+			System.out.println("변경하실 포켓몬 id를 입력해주세요.");
+			ownerId = sc.nextLine();
+
+			System.out.println(" 1. name \n 2. age \n 3. type \n 4. power \n 5. legend \n");
+			System.out.println("변경하실 포켓몬 정보를 선택해주세요");
+			inputColumn = sc.nextInt();
+
+			System.out.println("변경할 값을 입력해주세요.");
+			String set_update = sc.nextLine();
+
+			// 포켓몬 업데이트
+			PokemonService.updateOwner(ownerId, changeColumns[inputColumn -1], set_update);
+
+		case 3 ://  포켓몬 id로 삭제하기
+			System.out.println("삭제하실 포켓몬 아이디를 입력해주세요.");
+			ownerId = sc.nextLine();
+			PokemonService.deleteOwner(ownerId);
 			break;
 
 		default:

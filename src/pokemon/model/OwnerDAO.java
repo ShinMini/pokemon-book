@@ -64,7 +64,7 @@ public class OwnerDAO { //포켓몬 소유자 DAO
 
 
 	/* *8 수정필요
-	public static OwnerDTO getOwnerId(int ownerId) throws SQLException {
+	public static OwnerDTO getOwner(int ownerId) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -82,6 +82,44 @@ public class OwnerDAO { //포켓몬 소유자 DAO
 			DBUtil.close(con, pstmt, rset);
 		}
 		return result;
+	}
+	*/
+	/*
+// [READ] 포켓몬 검색 
+	// SElECT * FROM pokemon WHERE getColumn = getRead
+	public static PokemonDTO getPokemon(String getColumn, String getRead) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		PokemonDTO pokemon = null;
+		try {
+			con = DBUtil.getConnection();
+
+			pstmt = setReadColumn(getColumn, getRead, con, pstmt);
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				pokemon = PokemonDTO.pokemonDTOBuilder()
+						.pokemonId(rset.getInt(1))
+						.pokemonName(rset.getString(2))
+						.pokemonAge(rset.getInt(3))
+						.pokemonType(rset.getString(4))
+						.pokemonPower(rset.getInt(5))
+						.pokemonLegend(rset.getBoolean(6)).build();
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return pokemon;
+	}
+
+	public static PreparedStatement setReadColumn(String getColumn, String getRead, Connection con, PreparedStatement pstmt) {	// update할 대상을 정해줌. 
+		try {
+			pstmt = con.prepareStatement("select * from pokemon where pokemon_" + getColumn +"=?");
+			pstmt.setString(1, getRead);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return pstmt;
 	}
 	*/
 

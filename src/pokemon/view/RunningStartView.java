@@ -3,6 +3,8 @@ package pokemon.view;
 import java.lang.ModuleLayer.Controller;
 import java.util.Scanner;
 
+import pokemon.controller.PokemonController;
+
 public class RunningStartView {
 	static Scanner sc = new Scanner(System.in);
 	// 희돈님이 보내주신 파일로 수정 완료
@@ -27,16 +29,16 @@ public class RunningStartView {
 				switch (select) {
 				case 1:
 					System.out.println("\n [포켓몬 도감 조회 함수 호출]");
-					Controller.control(1);
+					PokemonController.control(1);
 
 					break;
 				case 2:
 					System.out.println("\n [포켓몬 조회 함수 호출]");
-					Controller.control(2);
+					PokemonController.control(1);
 					break;
 				case 3:
 					System.out.println("\n [포켓몬 마스터 조회 함수 호출]");
-					Controller.control(3);
+					PokemonController.control(1);
 					break;
 				case 4:
 					System.out.println("프로그램 종료");
