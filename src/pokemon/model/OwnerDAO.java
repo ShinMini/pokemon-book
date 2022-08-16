@@ -78,16 +78,15 @@ public class OwnerDAO {
 		}
 		return list;
 	}
-	// 수정
-	// 해당하는 ownerId의 Tier를 수정	// ownerId type string -> int 수정
-	public static boolean updateOwnerId(int ownerId, String tier) throws SQLException {
+	
+	// [UPDATE]	owner id를 받아와, 유저가 원하는 owner column의 value 수정 // updateColmn = 유저가 업데이트를 원하는 column 값 
+	public static boolean updateOwner(int ownerId, String toUpdate, String updateColumn) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
-			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("update owner set owner_tier=? where owner_id=?");
-			pstmt.setString(1, tier);
-			pstmt.setInt(2, ownerId);
+			con = DBUtil.getConnection();	// connection 확인
+
+			pstmt = setUpdateColumn(ownerId, updateColumn, toUpdate, con, pstmt);	// connection 정상 실행시 update 실행
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
 				return true;
@@ -97,6 +96,19 @@ public class OwnerDAO {
 		}
 		return false;
 	}
+
+	// update할 column에 따라 sql query문 다르게 실행
+	public static PreparedStatement setUpdateColumn(int ownerId, String updateColumn, String toUpdate,Connection con, PreparedStatement pstmt) {	// update할 대상을 정해줌. 
+		try {
+			pstmt = con.prepareStatement("update owner set owner_"+ updateColumn + "=? where owner=?");
+			pstmt.setString(1, toUpdate);
+			pstmt.setInt(2, ownerId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return pstmt;
+	}
+
 	// ownerId로 해당하는 owner정보 검색
 	public static OwnerDTO getOwnerId(int ownerId) throws SQLException {
 		Connection con = null;
@@ -116,6 +128,10 @@ public class OwnerDAO {
 			DBUtil.close(con, pstmt, rset);
 		}
 		return result;
+	}
+	public static OwnerDTO getOwnerName(String ownerName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
