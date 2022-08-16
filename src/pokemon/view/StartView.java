@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import pokemon.controller.PokemonController;
 
-public class RunningStartView {
+public class StartView {
 	static Scanner sc = new Scanner(System.in);
 	// 희돈님이 보내주신 파일로 수정 완료
 
@@ -37,7 +37,7 @@ public class RunningStartView {
 					break;
 				case 4:
 					System.out.println("프로그램 종료");
-					RunningEndView.showError("Exception 발생 프로그램을 종료합니다");
+					EndView.showError("Exception 발생 프로그램을 종료합니다");
 					System.exit(0);
 					break;
 				default:

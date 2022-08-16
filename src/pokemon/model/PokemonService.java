@@ -91,7 +91,7 @@ public class PokemonService {
 		return PokemonBookDAO.updatePokemonBook(pokemonBookId, owner);
 	}
 	//[DELETE] 도감 index로 검색해 해당 도감 정보 삭제
-	public boolean deletePokemonBook(int pokemonBookId) throws SQLException, NotExistException {
+	public static boolean deletePokemonBook(int pokemonBookId) throws SQLException, NotExistException {
 		notExistPokemonBook(pokemonBookId);
 		return PokemonBookDAO.deletePokemonBook(pokemonBookId);
 	}
