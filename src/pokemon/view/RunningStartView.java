@@ -25,13 +25,16 @@ public class RunningStartView {
 				System.out.print("");
 				switch (select) {
 				case 1:
-					System.out.println("\n 포켓몬 도감 조회 함수 호출");
+					System.out.println("\n [포켓몬 도감 조회 함수 호출]");
+					// controller.callPokemonBook();
 					break;
 				case 2:
-					System.out.println("\n 포켓몬 조회 함수 호출");
+					System.out.println("\n [포켓몬 조회 함수 호출]");
+					// controller.callPokemon();
 					break;
 				case 3:
-					System.out.println("\n 포켓몬 마스터 조회 함수 호출");
+					System.out.println("\n [포켓몬 마스터 조회 함수 호출]");
+					// controller.callOwner();
 					break;
 				case 4:
 					System.out.println("프로그램 종료");
@@ -47,4 +50,6 @@ public class RunningStartView {
 
 		}
 	}
+
+	public static void mainMenuPokemonBook() {}
 }
