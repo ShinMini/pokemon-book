@@ -36,7 +36,7 @@
                  (
                               pokemon_id      INT NOT NULL auto_increment,
                               pokemon_name    VARCHAR(20) NOT NULL,
-                              pokemon_age VARCHAR(20),
+                              pokemon_age 	  INT,
                               pokmeon_type    VARCHAR(20),
                               pokemon_power   INT,
                               pokemon_legend  BOOLEAN,
@@ -46,7 +46,7 @@
                  (
                               owner_id   INT NOT NULL auto_increment,
                               onwer_name VARCHAR(20),
-                              owner_age  SMALLINT,
+                              owner_age  INT,
                               owner_tier VARCHAR(20),
                               CONSTRAINT pk_owner PRIMARY KEY ( owner_id )
                  );
