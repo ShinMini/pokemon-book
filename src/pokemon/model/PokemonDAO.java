@@ -214,12 +214,6 @@ public class PokemonDAO {
 		return false;
 	}
 
-	// CREATE Required -> 주경님  * 포켓몬 id는 update X 
-	// 포켓몬 수정 1.  : 포켓몬 이름으로 검색해서 /
-	// 이름 외 다른 정보들 수정 (받아온 pokemon 객체에 있는 정보로 업데이트
-	// public static boolean updatePokemon(int PokemonId, PokemonDTO pokemon){ ... }
-
-
 	// [UPDATE]	포켓몬 id를 받아와, 유저가 원하는 포켓몬 column의 value 수정 // updateColmn = 유저가 업데이트를 원하는 column 값 
 	public static boolean updatePokemon(int pokemonId, String toUpdate, String updateColumn) throws SQLException {
 		Connection con = null;
