@@ -80,7 +80,7 @@ public class OwnerDAO {
 	}
 	// 수정
 	// 해당하는 ownerId의 Tier를 수정	// ownerId type string -> int 수정
-	public static boolean updateOwner(int ownerId, String tier) throws SQLException {
+	public static boolean updateOwnerId(int ownerId, String tier) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {

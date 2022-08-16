@@ -46,10 +46,11 @@ public class PokemonService {
 	public static boolean addOwner(OwnerDTO owner) throws SQLException {
 		return OwnerDAO.addOwner(owner);
 	}
+	// [UPDATE] 받아온 pokemon id값의 포켓몬 이름 수정.  // toUpdate => 업데이트할 column value ex) 피카츄 updateColumn => 업데이트할 column ex) name, power...
 	// [UPDATE] owner id에 해당하는 포켓몬 마스터(owner) 정보 수정. 
-	public static boolean updateOwner(int ownerId, OwnerDTO owner) throws SQLException, NotExistException {
-		notExistOwner(ownerId);	// owner 하위 function들 exception 구문 체크 필요
-		return OwnerDAO.updateOwnerId(ownerId, owner);
+	public static boolean updateOwner(int ownerId, String toUpdate, String updateCoulmn) throws SQLException, NotExistException {
+		notExistPokemon(ownerId);
+		return PokemonDAO.updatePokemon(ownerId, toUpdate, updateCoulmn);
 	}
 	//[DELETE] owner id로 검색해 해당 owner 정보 삭제
 	public boolean deleteOwner(int ownerId) throws SQLException, NotExistException {

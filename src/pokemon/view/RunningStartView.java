@@ -39,9 +39,9 @@ public class RunningStartView {
 //		PokemonController.getPokemon("홍길동");
 
 		
-		System.out.println("\\n**** 특정 포켓몬 삭제 ****");
-		PokemonController.deletePokemon("홍길동");
-		PokemonController.getPokemon("홍길동");
+//		System.out.println("\\n**** 특정 포켓몬 삭제 ****");
+//		PokemonController.deletePokemon("홍길동");
+//		PokemonController.getPokemon("홍길동");
 
 		
 		
