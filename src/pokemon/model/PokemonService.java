@@ -22,8 +22,8 @@ public class PokemonService {
 		return PokemonDAO.addPokemon(pokemon);
 	}
 	// [UPDATE] 받아온 pokemon id값의 포켓몬 이름 수정.  // toUpdate => 업데이트할 column value ex) 피카츄 updateColumn => 업데이트할 column ex) name, power...
-	public static boolean updatePokemon(int pokemonId, String toUpdate, String updateCoulmn) throws SQLException, NotExistException {
-		notExistPokemon(pokemonId);
+	public static boolean updatePokemon(String pokemonId, String toUpdate, String updateCoulmn) throws SQLException, NotExistException {
+		notExistPokemon("id", pokemonId);
 		return PokemonDAO.updatePokemon(pokemonId, toUpdate, updateCoulmn);
 	}
 	//[DELETE] pokemon id로 검색해 해당 pokemon 정보 삭제
@@ -106,6 +106,7 @@ public class PokemonService {
 
 	/***************** [CHECK EXIST CORRECTED VAILD] ************************/
 
+	// notExistPokemon("id", pokemonId)
 	// [POKEMON - CRUD]	// 포켓몬 column 유효 검사
 	public static void notExistPokemon(String checkColumn, String getCheckValue) throws NotExistException, SQLException {
 		PokemonDTO pokemon;

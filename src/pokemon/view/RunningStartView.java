@@ -1,5 +1,6 @@
 package pokemon.view;
 
+import java.lang.ModuleLayer.Controller;
 import java.util.Scanner;
 
 public class RunningStartView {
@@ -26,16 +27,16 @@ public class RunningStartView {
 				switch (select) {
 				case 1:
 					System.out.println("\n [포켓몬 도감 조회 함수 호출]");
-					Controller.callPokemonBook("포켓몬 도감");
+					Controller.control(1);
 
 					break;
 				case 2:
 					System.out.println("\n [포켓몬 조회 함수 호출]");
-					// controller.callPokemon();
+					Controller.control(2);
 					break;
 				case 3:
 					System.out.println("\n [포켓몬 마스터 조회 함수 호출]");
-					// controller.callOwner();
+					Controller.control(3);
 					break;
 				case 4:
 					System.out.println("프로그램 종료");

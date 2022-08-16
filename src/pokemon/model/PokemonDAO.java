@@ -11,9 +11,9 @@ import pokemon.model.dto.PokemonDTO;
 import pokemon.model.util.DBUtil;
 
 
-public class PokemonDAO {
-	/** INSERT */
-	// 포켓몬 추가
+public class PokemonDAO { //포켓몬 관계된 DAO 
+
+	/** 추가 INSERT */
 	public static boolean addPokemon(PokemonDTO pokemon) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -32,12 +32,16 @@ public class PokemonDAO {
 			if (result == 1) {
 				return true;
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			DBUtil.close(con, pstmt);
 		}
 		return false;
 	}
+
 	/** 검색 SELECT */
+	// SELECT * FROM POKEMONS;
 	public static ArrayList<PokemonDTO> getAllPokemons() throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -65,7 +69,8 @@ public class PokemonDAO {
 		return all;
 	}
 
-	// [READ] 포켓몬 검색 ex) getPokemon("name", "파이리");
+	// [READ] 포켓몬 검색 
+	// SElECT * FROM pokemon WHERE getColumn = getRead
 	public static PokemonDTO getPokemon(String getColumn, String getRead) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -103,7 +108,6 @@ public class PokemonDAO {
 
 
 	/** 수정 UPDATE */
-	// [UPDATE]	포켓몬 id를 받아와, 유저가 원하는 포켓몬 column의 value 수정 // updateColmn = 유저가 업데이트를 원하는 column 값 
 	public static boolean updatePokemon(int pokemonId, String toUpdate, String updateColumn) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -134,7 +138,7 @@ public class PokemonDAO {
 	}
 
 	/** 삭제 DELETE */
-	// 포켓몬 삭제
+	// 포켓몬 삭
 	public static boolean deletePokemon(String pokemonName) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
