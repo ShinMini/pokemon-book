@@ -12,13 +12,32 @@ import pokemon.model.util.DBUtil;
 
 
 public class PokemonDAO {
-	// 희돈님이 보내주신 파일대로 교체 완료
+	/** INSERT */
+	// 포켓몬 추가
+	public static boolean addPokemon(PokemonDTO pokemon) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("insert into pokemon values(?, ?, ?, ?, ?, ?)");
+			pstmt.setInt(1, pokemon.getPokemonId());
+			pstmt.setString(2, pokemon.getPokemonName());
+			pstmt.setInt(3, pokemon.getPokemonAge());
+			pstmt.setString(4, pokemon.getPokemonType());
+			pstmt.setInt(5, pokemon.getPokemonPower());
+			pstmt.setBoolean(6, pokemon.isPokemonLegend());
 
-	/*	수정 사항_(완)
-	 *  Feature 일괄적으로 Age로 변경
-	 * sql문 변경된것과 일치하게 변경
-	모든 포켓몬 검색해서 반환
-	 */ 
+			int result = pstmt.executeUpdate();
+
+			if (result == 1) {
+				return true;
+			}
+		} finally {
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
+	/** 검색 SELECT */
 	public static ArrayList<PokemonDTO> getAllPokemons() throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -46,17 +65,16 @@ public class PokemonDAO {
 		return all;
 	}
 
-	// 포켓몬 이름으로 검색
-	public static PokemonDTO getPokemonName(String pokemonName) throws SQLException {
+	// [READ] 포켓몬 검색 ex) getPokemon("name", "파이리");
+	public static PokemonDTO getPokemon(String getColumn, String getRead) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		PokemonDTO pokemon = null;
-
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from pokemon where pokemon_name=?");
-			pstmt.setString(1, pokemonName);
+		
+			pstmt = setReadColumn(getColumn, getRead, con, pstmt);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
 				pokemon = PokemonDTO.pokemonDTOBuilder()
@@ -72,148 +90,19 @@ public class PokemonDAO {
 		}
 		return pokemon;
 	}
-	// 포켓몬 id로 검색
-	public static PokemonDTO getPokemonId(int pokemonId) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		PokemonDTO pokemon = null;
-
+	
+	public static PreparedStatement setReadColumn(String getColumn, String getRead, Connection con, PreparedStatement pstmt) {	// update할 대상을 정해줌. 
 		try {
-			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from pokemon where pokemon_id=?");
-			pstmt.setInt(1, pokemonId);
-			rset = pstmt.executeQuery();
-			if (rset.next()) {
-				pokemon = PokemonDTO.pokemonDTOBuilder()
-						.pokemonId(rset.getInt(1))
-						.pokemonName(rset.getString(2))
-						.pokemonAge(rset.getInt(3))
-						.pokemonType(rset.getString(4))
-						.pokemonPower(rset.getInt(5))
-						.pokemonLegend(rset.getBoolean(6)).build();
-			}
-		} finally {
-			DBUtil.close(con, pstmt, rset);
+			pstmt = con.prepareStatement("select * from pokemon where pokemon_" + getColumn +"=?");
+			pstmt.setString(1, getRead);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		return pokemon;
+		return pstmt;
 	}
 
 
-	// 포켓몬 특징으로 검색
-	// 나이가 같은 포켓몬 한명만 검색할것인지? 아니면 전체 다 검색할것인지?
-	public static PokemonDTO pokemonAge(int pokemonAge) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		PokemonDTO pokemon2 = null;
-
-		try {
-			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from pokemon where pokemon_age=?");
-			pstmt.setInt(1, pokemonAge);
-			rset = pstmt.executeQuery();
-			if (rset.next()) {
-				pokemon2 = PokemonDTO.pokemonDTOBuilder()
-						.pokemonId(rset.getInt(1))
-						.pokemonName(rset.getString(2))
-						.pokemonAge(rset.getInt(3))
-						.pokemonType(rset.getString(4))
-						.pokemonPower(rset.getInt(5))
-						.pokemonLegend(rset.getBoolean(6)).build();
-			}
-		} finally {
-			DBUtil.close(con, pstmt, rset);
-		}
-		return pokemon2;
-	}
-
-
-	// 포켓몬 타입으로 검색
-	// 타입이 같은 포켓몬 모두 검색할려면 while문으로 리스트에 넣어서 출력해야 할듯
-	public static PokemonDTO pokemonType(String pokemonType) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		PokemonDTO pokemon2 = null;
-
-		try {
-			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from pokemon where pokemon_type=?");
-			pstmt.setString(1, pokemonType);
-			rset = pstmt.executeQuery();
-			if (rset.next()) {
-				pokemon2 = PokemonDTO.pokemonDTOBuilder()
-						.pokemonId(rset.getInt(1))
-						.pokemonName(rset.getString(2))
-						.pokemonAge(rset.getInt(3))
-						.pokemonType(rset.getString(4))
-						.pokemonPower(rset.getInt(5))
-						.pokemonLegend(rset.getBoolean(6)).build();
-			}
-		} finally {
-			DBUtil.close(con, pstmt, rset);
-		}
-		return pokemon2;
-	}
-
-	/*
-	// 능력치 검색
-	// 이상인 포켓몬 모두 검색할려면 while문으로 리스트에 넣어서 출력해야 할듯
-	public static PokemonDTO pokemonPower(int pokemonPower) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		PokemonDTO pokemon2 = null;
-
-		try {
-			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from pokemon where pokemon_power >=?");
-			pstmt.setInt(1, pokemonPower);
-			rset = pstmt.executeQuery();
-			if (rset.next()) {
-				pokemon2 = PokemonDTO.pokemonDTOBuilder()
-						.pokemonId(rset.getInt(1))
-						.pokemonName(rset.getString(2))
-						.pokemonAge(rset.getInt(3))
-						.pokemonType(rset.getString(4))
-						.pokemonPower(rset.getInt(5))
-						.pokemonLegend(rset.getBoolean(6)).build();
-			}
-		} finally {
-			DBUtil.close(con, pstmt, rset);
-		}
-		return pokemon2;
-	}
-	*/
-
-	// 포켓몬 레전드 유무로 검색
-
-	// 포켓몬 추가
-	public static boolean addPokemon(PokemonDTO pokemon) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		try {
-			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("insert into pokemon values(?, ?, ?, ?, ?, ?)");
-			pstmt.setInt(1, pokemon.getPokemonId());
-			pstmt.setString(2, pokemon.getPokemonName());
-			pstmt.setInt(3, pokemon.getPokemonAge());
-			pstmt.setString(4, pokemon.getPokemonType());
-			pstmt.setInt(5, pokemon.getPokemonPower());
-			pstmt.setBoolean(6, pokemon.isPokemonLegend());
-
-			int result = pstmt.executeUpdate();
-
-			if (result == 1) {
-				return true;
-			}
-		} finally {
-			DBUtil.close(con, pstmt);
-		}
-		return false;
-	}
-
+	/** 수정 UPDATE */
 	// [UPDATE]	포켓몬 id를 받아와, 유저가 원하는 포켓몬 column의 value 수정 // updateColmn = 유저가 업데이트를 원하는 column 값 
 	public static boolean updatePokemon(int pokemonId, String toUpdate, String updateColumn) throws SQLException {
 		Connection con = null;
@@ -244,6 +133,7 @@ public class PokemonDAO {
 		return pstmt;
 	}
 
+	/** 삭제 DELETE */
 	// 포켓몬 삭제
 	public static boolean deletePokemon(String pokemonName) throws SQLException {
 		Connection con = null;
