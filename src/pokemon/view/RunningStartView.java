@@ -10,6 +10,7 @@ public class RunningStartView {
 	// 희돈님이 보내주신 파일로 수정 완료
 
 	public static void main(String[] args) {
+		mainMenu();
 	
 	}
 	
@@ -20,9 +21,23 @@ public class RunningStartView {
 		int select = 0;
 		while (true) {
 			try {
-				System.out.println("포켓몬 도감");
-				System.out.println("0.종료 1.포켓몬 도감 조회 2.포켓몬 조회 3. 포켓몬 마스터 조회");
+				System.out.println(" =========== 포켓몬 도감 ==============");
+				System.out.println(" 0. 종료 \n 1. 포켓몬 도감 조회 \n 2. 포켓몬 조회 \n 3. 포켓몬 마스터 조회");
 				select = sc.nextInt();
+				switch (select) {
+				case 1:
+					System.out.println("포켓몬 도감 조회 함수 호출");
+					break;
+				case 2:
+					System.out.println("포켓몬 도감 조회 함수 호출");
+					break;
+				case 3:
+					System.out.println(");
+					break;
+				case 4:
+					System.out.println("프로그램 종료하기");
+					break;
+				}
 				if (select == 0) {
 					RunningEndView.showMsg("프로그램을 종료합니다");
 					System.exit(0);
@@ -30,13 +45,10 @@ public class RunningStartView {
 					RunningEndView.showMsg("정해진 범위 안에서 선택하세요");
 				} else if (select == 1) {
 					System.out.println("1.조회 2.추가 3.삭제 ...");
-					cont.pokemonBook(sc.nextInt());
 				} else if (select == 2) {
 					System.out.println("1.조회 2.추가 3.삭제 ...");
-					cont.pokemon(sc.nextInt());
 				} else if (select == 3) {
 					System.out.println("1.조회 2.추가 3.삭제 ...");
-					cont.owner(sc.nextInt());
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
