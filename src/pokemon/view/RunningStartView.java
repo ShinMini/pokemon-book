@@ -29,32 +29,15 @@ public class RunningStartView {
 					System.out.println("포켓몬 도감 조회 함수 호출");
 					break;
 				case 2:
-					System.out.println("포켓몬 도감 조회 함수 호출");
+					System.out.println("포켓몬 조회 함수 호출");
 					break;
 				case 3:
-					System.out.println(");
+					System.out.println("포켓몬 마스터 조회 함수 호출");
 					break;
 				case 4:
-					System.out.println("프로그램 종료하기");
-					break;
-				}
-				if (select == 0) {
-					RunningEndView.showMsg("프로그램을 종료합니다");
+					System.out.println("프로그램 종료");
+					RunningEndView.showError("Exception 발생 프로그램을 종료합니다");
 					System.exit(0);
-				} else if (select > 3 || select < 0) {
-					RunningEndView.showMsg("정해진 범위 안에서 선택하세요");
-				} else if (select == 1) {
-					System.out.println("1.조회 2.추가 3.삭제 ...");
-				} else if (select == 2) {
-					System.out.println("1.조회 2.추가 3.삭제 ...");
-				} else if (select == 3) {
-					System.out.println("1.조회 2.추가 3.삭제 ...");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				RunningEndView.showError("Exception 발생 프로그램을 종료합니다");
-				System.exit(0);
-			}
-		}
+					break;
 	}
 }

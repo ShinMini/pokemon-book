@@ -27,15 +27,14 @@
     USE pokemon;
     -- 테이블 생성 코드
     -- 생성하려는 table이 혹여 존재할 경우 삭제하는 명령어DROP TABLE IF EXISTS
-    drop table
-    DROP TABLE IF EXISTS
-    DROP TABLE
+    DROP TABLE IF EXISTS pokemon;
+    DROP TABLE IF EXISTS owner;
     DROP TABLE IF EXISTS pokemon_book;
     
     -- pokemon, owner, pokemon_book table 생성
 				 CREATE TABLE pokemon
                  (
-                              pokemon_id      INT NOT NULL auto_increment PRIMARY KEY,
+                              pokemon_id      INT NOT NULL auto_increment,
                               pokemon_name    VARCHAR(20) NOT NULL,
                               pokemon_age VARCHAR(20),
                               pokmeon_type    VARCHAR(20),
@@ -45,21 +44,20 @@
                  );
                  CREATE TABLE owner
                  (
-                              owner_id   INT NOT NULL auto_increment PRIMARY KEY,
+                              owner_id   INT NOT NULL auto_increment,
                               onwer_name VARCHAR(20),
                               owner_age  SMALLINT,
                               owner_tier VARCHAR(20),
                               CONSTRAINT pk_owner PRIMARY KEY ( owner_id )
-                 );CREATE TABLE pokemon_book
+                 );
+
+                 CREATE TABLE pokemon_book
                  (
-                              pokemon_book_id INT NOT NULL auto_increment PRIMARY KEY,
-                 );CREATE TABLE pokemon_book
-                 (
-                              pokemon_book_id INT auto_increment PRIMARY KEY,
+                              pokemon_book_id INT auto_increment,
                               pokemon_id      INT NOT NULL,
                               owner_id        INT NULL,
-                              FOREIGN KEY (pokemon_id) REFERENCES pokemon(pokemon_id) ON
-                 UPDATE CASCADE foreign KEY (owner_id) REFERENCES owner(owner_id)
-                 ON
-                 UPDATE CASCADE CONSTRAINT pk_pokemon_book PRIMARY KEY ( pokemon_book_id )
-                 );ALTER TABLE pokemon_book_id auto_increment = 1000;
+                              FOREIGN KEY (pokemon_id) REFERENCES pokemon(pokemon_id) ON UPDATE CASCADE,
+							  FOREIGN KEY (owner_id) REFERENCES owner(owner_id) ON UPDATE CASCADE,
+							  CONSTRAINT pk_pokemon_book PRIMARY KEY ( pokemon_book_id )
+                 );
+                 ALTER TABLE pokemon_book AUTO_INCREMENT = 1000;
