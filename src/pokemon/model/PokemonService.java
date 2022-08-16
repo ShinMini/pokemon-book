@@ -57,8 +57,8 @@ public class PokemonService {
 		return OwnerDAO.deleteOwner(ownerId);
 	}
 	// [READ] owner id와 일치하는 owner 정보 검색
-	public static OwnerDTO getOwner(int ownerId) throws SQLException, NotExistException {
-		return OwnerDAO.getOwner(ownerId);
+	public static OwnerDTO getOwner(String ownerId) throws SQLException, NotExistException {
+		return OwnerDAO.getOwner("id", ownerId);
 	}
 	// [READ] 모든 owner 정보 검색
 	public static ArrayList<OwnerDTO> getAllOwners() throws SQLException {

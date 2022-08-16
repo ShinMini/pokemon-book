@@ -60,56 +60,30 @@ public class OwnerDAO { //포켓몬 소유자 DAO
 		}
 		return list;
 	}
-
-
-
-	/* *8 수정필요
-	public static OwnerDTO getOwner(int ownerId) throws SQLException {
+	
+	// [READ] 포켓몬 마스터 검색 
+	// SElECT * FROM owner WHERE getColumn = getRead
+	public static OwnerDTO getOwner(String getColumn, String getRead) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		OwnerDTO result = null;
-		try {
-			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from owner where owner_id=?");
-			pstmt.setInt(1, ownerId);
-			rset = pstmt.executeQuery();
-			if (rset.next()) {
-				result = OwnerDTO.ownerDTOBuilder().ownerId(rset.getInt(1)).ownerName(rset.getString(2))
-						.ownerAge(rset.getInt(3)).ownerTier(rset.getString(4)).build();
-			}
-		} finally {
-			DBUtil.close(con, pstmt, rset);
-		}
-		return result;
-	}
-	*/
-	/*
-// [READ] 포켓몬 검색 
-	// SElECT * FROM pokemon WHERE getColumn = getRead
-	public static PokemonDTO getPokemon(String getColumn, String getRead) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		PokemonDTO pokemon = null;
+		OwnerDTO owner = null;
 		try {
 			con = DBUtil.getConnection();
 
 			pstmt = setReadColumn(getColumn, getRead, con, pstmt);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
-				pokemon = PokemonDTO.pokemonDTOBuilder()
-						.pokemonId(rset.getInt(1))
-						.pokemonName(rset.getString(2))
-						.pokemonAge(rset.getInt(3))
-						.pokemonType(rset.getString(4))
-						.pokemonPower(rset.getInt(5))
-						.pokemonLegend(rset.getBoolean(6)).build();
+				owner = OwnerDTO.ownerDTOBuilder()
+						.ownerId(rset.getInt(1))
+						.ownerName(rset.getString(2))
+						.ownerAge(rset.getInt(3))
+						.ownerTier(rset.getString(4)).build();
 			}
 		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}
-		return pokemon;
+		return owner;
 	}
 
 	public static PreparedStatement setReadColumn(String getColumn, String getRead, Connection con, PreparedStatement pstmt) {	// update할 대상을 정해줌. 
@@ -121,8 +95,8 @@ public class OwnerDAO { //포켓몬 소유자 DAO
 		}
 		return pstmt;
 	}
-	*/
 
+	// ----------------
 	/** 수정 UPDATE */
 	public static boolean updateOwner(String ownerId, String toUpdate, String updateColumn) throws SQLException {
 		Connection con = null;

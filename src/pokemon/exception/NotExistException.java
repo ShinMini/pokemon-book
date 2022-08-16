@@ -4,6 +4,7 @@
  */
 package pokemon.exception;
 
+@SuppressWarnings("serial")
 public class NotExistException extends Exception {
 	public NotExistException() {}
 

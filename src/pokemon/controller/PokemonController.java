@@ -1,7 +1,6 @@
 package pokemon.controller;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import pokemon.exception.NotExistException;
