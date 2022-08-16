@@ -1,9 +1,10 @@
-package poketmon.view;
+package pokemon.view;
 
 // import pokemon.controller.OwnerController;
 // import pokemon.controller.PokemonController;
 import pokemon.model.dto.OwnerDTO;
 import pokemon.model.dto.PokemonDTO;
+import pokemon.controller.PokemonController;
 
 public class RunningStartView {
 	// 희돈님이 보내주신 파일로 수정 완료
@@ -38,9 +39,9 @@ public class RunningStartView {
 //		PokemonController.getPokemon("홍길동");
 
 		
-		System.out.println("\\n**** 특정 포켓몬 삭제 ****");
-		PokemonController.deletePokemon("홍길동");
-		PokemonController.getPokemon("홍길동");
+//		System.out.println("\\n**** 특정 포켓몬 삭제 ****");
+//		PokemonController.deletePokemon("홍길동");
+//		PokemonController.getPokemon("홍길동");
 
 		
 		
