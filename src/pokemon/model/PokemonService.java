@@ -27,8 +27,8 @@ public class PokemonService {
 		return PokemonDAO.updatePokemon(pokemonId, toUpdate, updateCoulmn);
 	}
 	//[DELETE] pokemon id로 검색해 해당 pokemon 정보 삭제
-	public boolean deletePokemon(String pokemonId) throws SQLException, NotExistException {
-		notExistPokemon(pokemonId);
+	public static boolean deletePokemon(String pokemonId) throws SQLException, NotExistException {
+		notExistPokemon("id", pokemonId);
 		return PokemonDAO.deletePokemon(pokemonId);
 	}
 	// [READ] pokemon id와 일치하는 pokemon 정보 검색
@@ -47,13 +47,13 @@ public class PokemonService {
 		return OwnerDAO.addOwner(owner);
 	}
 	// [UPDATE] owner id에 해당하는 포켓몬 마스터(owner) 정보 수정. 
-	public static boolean updateOwner(int ownerId, String toUpdate, String updateCoulmn) throws SQLException, NotExistException {
-		notExistPokemon(ownerId);
-		return PokemonDAO.updatePokemon(ownerId, toUpdate, updateCoulmn);
+	public static boolean updateOwner(String ownerId, String toUpdate, String updateCoulmn) throws SQLException, NotExistException {
+		notExistOwner("id", ownerId);
+		return OwnerDAO.updateOwner(ownerId, toUpdate, updateCoulmn);
 	}
 	//[DELETE] owner id로 검색해 해당 owner 정보 삭제
-	public boolean deleteOwner(int ownerId) throws SQLException, NotExistException {
-		notExistOwner(ownerId);
+	public boolean deleteOwner(String ownerId) throws SQLException, NotExistException {
+		notExistOwner("id", ownerId);
 		return OwnerDAO.deleteOwner(ownerId);
 	}
 	// [READ] owner id와 일치하는 owner 정보 검색
@@ -125,18 +125,6 @@ public class PokemonService {
 		OwnerDTO owner;
 		try {
 			owner = OwnerDAO.getOwner(checkColumn, getCheckValue);
-			if (owner == null) {
-				throw new NotExistException("검색하신 포켓몬 마스터가 존재하지 않습니다.");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	// [OWNER - CRUD] 포켓몬 오너 name 유효 검사
-	public static void notExistOwner(String ownerName) throws NotExistException, SQLException {
-		OwnerDTO owner;
-		try {
-			owner = OwnerDAO.getOwnerName(ownerName);
 			if (owner == null) {
 				throw new NotExistException("검색하신 포켓몬 마스터가 존재하지 않습니다.");
 			}

@@ -86,7 +86,7 @@ public class OwnerDAO { //포켓몬 소유자 DAO
 	*/
 
 	/** 수정 UPDATE */
-	public static boolean updateOwner(int ownerId, String toUpdate, String updateColumn) throws SQLException {
+	public static boolean updateOwner(String ownerId, String toUpdate, String updateColumn) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -103,11 +103,11 @@ public class OwnerDAO { //포켓몬 소유자 DAO
 		return false;
 	}
 
-	public static PreparedStatement setUpdateColumn(int ownerId, String updateColumn, String toUpdate,Connection con, PreparedStatement pstmt) {	// update할 대상을 정해줌. 
+	public static PreparedStatement setUpdateColumn(String ownerId, String updateColumn, String toUpdate,Connection con, PreparedStatement pstmt) {	// update할 대상을 정해줌. 
 		try {
 			pstmt = con.prepareStatement("update owner set owner_"+ updateColumn + "=? where owner=?");
 			pstmt.setString(1, toUpdate);
-			pstmt.setInt(2, ownerId);
+			pstmt.setInt(2, Integer.parseInt(ownerId));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -115,13 +115,13 @@ public class OwnerDAO { //포켓몬 소유자 DAO
 	}
 	
 	/** 삭제 DELETE */
-	public static boolean deleteOwner(int ownerId) throws SQLException {
+	public static boolean deleteOwner(String ownerId) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBUtil.getConnection();
 			pstmt = conn.prepareStatement("delete from owner where owner_id=?");
-			pstmt.setInt(1, ownerId);
+			pstmt.setInt(1, Integer.parseInt(ownerId));
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
 				return true;

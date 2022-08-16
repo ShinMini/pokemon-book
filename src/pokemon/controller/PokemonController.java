@@ -66,7 +66,8 @@ public class PokemonController {
 		}
 	}
 	public static void pokemonSelected(int subOption) throws SQLException {
-		int pokemonId, inputColumn =0;
+		String pokemonId;
+		int inputColumn =0;
 		String changeColumn = "";
 		String[] changeColumns = {"name", "age", "type", "power", "legend"};
 
@@ -77,7 +78,7 @@ public class PokemonController {
 		case 2 ://  포켓몬 id로 포켓몬 정보수정하기
 			System.out.println("\n =========== 포켓몬 id로 포켓몬 정보 수정하기 ============== \n");
 			System.out.println("변경하실 포켓몬 id를 입력해주세요.");
-			pokemonId = sc.nextInt();
+			pokemonId = sc.nextLine();
 
 			System.out.println(" 1. name \n 2. age \n 3. type \n 4. power \n 5. legend \n");
 			System.out.println("변경하실 포켓몬 정보를 선택해주세요");
@@ -91,7 +92,7 @@ public class PokemonController {
 
 		case 3 ://  포켓몬 id로 삭제하기
 			System.out.println("삭제하실 포켓몬 아이디를 입력해주세요.");
-			pokemonId = sc.nextInt();
+			pokemonId = sc.nextLine();
 			PokemonService.deletePokemon(pokemonId);
 			break;
 
