@@ -73,7 +73,7 @@ public class PokemonDAO {
 		PokemonDTO pokemon = null;
 		try {
 			con = DBUtil.getConnection();
-		
+
 			pstmt = setReadColumn(getColumn, getRead, con, pstmt);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
@@ -90,7 +90,7 @@ public class PokemonDAO {
 		}
 		return pokemon;
 	}
-	
+
 	public static PreparedStatement setReadColumn(String getColumn, String getRead, Connection con, PreparedStatement pstmt) {	// update할 대상을 정해줌. 
 		try {
 			pstmt = con.prepareStatement("select * from pokemon where pokemon_" + getColumn +"=?");

@@ -26,7 +26,8 @@ public class RunningStartView {
 				switch (select) {
 				case 1:
 					System.out.println("\n [포켓몬 도감 조회 함수 호출]");
-					// controller.callPokemonBook();
+					Controller.callPokemonBook("포켓몬 도감");
+
 					break;
 				case 2:
 					System.out.println("\n [포켓몬 조회 함수 호출]");

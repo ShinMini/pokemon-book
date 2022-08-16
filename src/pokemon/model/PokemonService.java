@@ -10,7 +10,7 @@ import pokemon.model.dto.PokemonDTO;
 
 public class PokemonService {
 	private static PokemonService instance = new PokemonService();
-	private PokemonService() {}
+	public PokemonService() {}
 	public static PokemonService getInstance() {
 		return instance;
 	}
@@ -32,8 +32,8 @@ public class PokemonService {
 		return PokemonDAO.deletePokemon(pokemonId);
 	}
 	// [READ] pokemon id와 일치하는 pokemon 정보 검색
-	public static PokemonDTO getPokemon(int pokemonId) throws SQLException, NotExistException {
-		return PokemonDAO.getPokemonId(pokemonId);
+	public static PokemonDTO getPokemon(String getColumn, String getRead) throws SQLException, NotExistException {
+		return PokemonDAO.getPokemon(getColumn, getRead);
 	}
 	// [READ] 모든 pokemon 정보 검색
 	public static ArrayList<PokemonDTO> getAllPokemons() throws SQLException {	// PoketmonDTO type을 갖는 ArrayList 반환
@@ -106,23 +106,11 @@ public class PokemonService {
 
 	/***************** [CHECK EXIST CORRECTED VAILD] ************************/
 
-	// [POKEMON - CRUD]	// 포켓몬 id 유효 검사
-	public static void notExistPokemon(int pokemonId) throws NotExistException, SQLException {
+	// [POKEMON - CRUD]	// 포켓몬 column 유효 검사
+	public static void notExistPokemon(String checkColumn, String getCheckValue) throws NotExistException, SQLException {
 		PokemonDTO pokemon;
 		try {
-			pokemon = PokemonDAO.getPokemonId(pokemonId);	// parameter로 유입된 id에 일치하는 poketmon 객체가 존재하지 않는 경우, 
-			if (pokemon == null) {
-				throw new NotExistException("검색하신 포켓몬 정보가 없습니다.");	// throw notExitstException 호출
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	// [POKEMON - CRUD]	// 포켓몬 name 유효 검사
-	public static void notExistPokemon(String pokemonName) throws NotExistException, SQLException {
-		PokemonDTO pokemon;
-		try {
-			pokemon = PokemonDAO.getPokemonName(pokemonName);	// parameter로 유입된 id에 일치하는 poketmon 객체가 존재하지 않는 경우, 
+			pokemon = PokemonDAO.getPokemon(checkColumn, getCheckValue);	// parameter로 유입된 id에 일치하는 poketmon 객체가 존재하지 않는 경우, 
 			if (pokemon == null) {
 				throw new NotExistException("검색하신 포켓몬 정보가 없습니다.");	// throw notExitstException 호출
 			}
@@ -131,11 +119,11 @@ public class PokemonService {
 		}
 	}
 
-	// [OWNER - CRUD] 포켓몬 오너 id 유효 검사 
-	public static void notExistOwner(int ownerId) throws NotExistException, SQLException {
+	// [OWNER - CRUD] 포켓몬 오너 column 유효 검사 
+	public static void notExistOwner(String checkColumn, String getCheckValue) throws NotExistException, SQLException {
 		OwnerDTO owner;
 		try {
-			owner = OwnerDAO.getOwnerId(ownerId);
+			owner = OwnerDAO.getOwner(checkColumn, getCheckValue);
 			if (owner == null) {
 				throw new NotExistException("검색하신 포켓몬 마스터가 존재하지 않습니다.");
 			}
