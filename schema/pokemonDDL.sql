@@ -13,7 +13,8 @@
 -- database list 확인
 -- SHOW DATABASES;
 -- id-bigdata/pw-bigdata 계정 생성
--- 로컬 user 생성 명령어 : host=localhostCREATE user 'project01'@'localhost' identified BY 'project01';
+-- 로컬 user 생성 명령어 : host=localhost
+-- CREATE user 'project01'@'localhost' identified BY 'project01';
   -- 외부 접속 user 생성 명령어 : host=%
   -- create user 'project01'@'%' identified by 'project01';
   -- 만일 ip 주소가 292.158.26.60 에서만 접속 가능한 user 생성 방식
@@ -21,12 +22,16 @@
   -- DB생성CREATE DATABASE pokemon;
     -- 특정 database 사용 가능하게 권한 부여
     -- 전제조건 : admin 즉 root 계정으로 권한 부여
-    -- mysql -u root - pGRANT ALL privileges ON pokemon.* TO 'project01'@'localhost';
-    -- ? 생성 및 권한이 있는 project01 계정으로 pokemon인 database 사용 명령어mysql -u project01 -p
+    -- mysql -u root - p
+    -- GRANT ALL privileges ON pokemon.* TO 'project01'@'localhost';
+    -- ? 생성 및 권한이 있는 project01 계정으로 pokemon인 database 사용 명령어
+    -- mysql -u project01 -p
     -- SHOW DATABASES;
-    USE pokemon;
     -- 테이블 생성 코드
     -- 생성하려는 table이 혹여 존재할 경우 삭제하는 명령어DROP TABLE IF EXISTS
+
+    USE pokemon;
+
     DROP TABLE IF EXISTS pokemon;
     DROP TABLE IF EXISTS owner;
     DROP TABLE IF EXISTS pokemon_book;

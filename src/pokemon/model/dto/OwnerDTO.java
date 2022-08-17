@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class OwnerDTO {
+
 	private int ownerId;
 	private String ownerName;
 	private int ownerAge;

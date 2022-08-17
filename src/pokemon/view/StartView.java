@@ -2,7 +2,9 @@ package pokemon.view;
 
 import java.util.Scanner;
 
-public class RunningStartView {
+import pokemon.controller.PokemonController;
+
+public class StartView {
 	static Scanner sc = new Scanner(System.in);
 	// 희돈님이 보내주신 파일로 수정 완료
 
@@ -25,20 +27,17 @@ public class RunningStartView {
 				System.out.print("");
 				switch (select) {
 				case 1:
-					System.out.println("\n [포켓몬 도감 조회 함수 호출]");
-					// controller.callPokemonBook();
+					PokemonController.control(1);
 					break;
 				case 2:
-					System.out.println("\n [포켓몬 조회 함수 호출]");
-					// controller.callPokemon();
+					PokemonController.control(2);
 					break;
 				case 3:
-					System.out.println("\n [포켓몬 마스터 조회 함수 호출]");
-					// controller.callOwner();
+					PokemonController.control(3);
 					break;
 				case 4:
 					System.out.println("프로그램 종료");
-					RunningEndView.showError("Exception 발생 프로그램을 종료합니다");
+					EndView.showError("Exception 발생 프로그램을 종료합니다");
 					System.exit(0);
 					break;
 				default:

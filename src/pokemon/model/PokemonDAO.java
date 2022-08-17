@@ -11,9 +11,9 @@ import pokemon.model.dto.PokemonDTO;
 import pokemon.model.util.DBUtil;
 
 
-public class PokemonDAO {
-	/** INSERT */
-	// 포켓몬 추가
+public class PokemonDAO { //포켓몬 관계된 DAO 
+
+	/** 추가 INSERT */
 	public static boolean addPokemon(PokemonDTO pokemon) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -32,12 +32,16 @@ public class PokemonDAO {
 			if (result == 1) {
 				return true;
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			DBUtil.close(con, pstmt);
 		}
 		return false;
 	}
+
 	/** 검색 SELECT */
+	// SELECT * FROM POKEMONS;
 	public static ArrayList<PokemonDTO> getAllPokemons() throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -65,7 +69,8 @@ public class PokemonDAO {
 		return all;
 	}
 
-	// [READ] 포켓몬 검색 ex) getPokemon("name", "파이리");
+	// [READ] 포켓몬 검색 
+	// SElECT * FROM pokemon WHERE getColumn = getRead
 	public static PokemonDTO getPokemon(String getColumn, String getRead) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -73,7 +78,7 @@ public class PokemonDAO {
 		PokemonDTO pokemon = null;
 		try {
 			con = DBUtil.getConnection();
-		
+
 			pstmt = setReadColumn(getColumn, getRead, con, pstmt);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
@@ -90,7 +95,7 @@ public class PokemonDAO {
 		}
 		return pokemon;
 	}
-	
+
 	public static PreparedStatement setReadColumn(String getColumn, String getRead, Connection con, PreparedStatement pstmt) {	// update할 대상을 정해줌. 
 		try {
 			pstmt = con.prepareStatement("select * from pokemon where pokemon_" + getColumn +"=?");
@@ -103,8 +108,7 @@ public class PokemonDAO {
 
 
 	/** 수정 UPDATE */
-	// [UPDATE]	포켓몬 id를 받아와, 유저가 원하는 포켓몬 column의 value 수정 // updateColmn = 유저가 업데이트를 원하는 column 값 
-	public static boolean updatePokemon(int pokemonId, String toUpdate, String updateColumn) throws SQLException {
+	public static boolean updatePokemon(String pokemonId, String toUpdate, String updateColumn) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -122,11 +126,11 @@ public class PokemonDAO {
 	}
 
 	// update할 column에 따라 sql query문 다르게 실행
-	public static PreparedStatement setUpdateColumn(int pokemonId, String updateColumn, String toUpdate,Connection con, PreparedStatement pstmt) {	// update할 대상을 정해줌. 
+	public static PreparedStatement setUpdateColumn(String pokemonId, String updateColumn, String toUpdate,Connection con, PreparedStatement pstmt) {	// update할 대상을 정해줌. 
 		try {
 			pstmt = con.prepareStatement("update pokemon set pokemon_"+ updateColumn + "=? where pokemon_id=?");
 			pstmt.setString(1, toUpdate);
-			pstmt.setInt(2, pokemonId);
+			pstmt.setInt(2, Integer.parseInt(pokemonId));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -134,7 +138,7 @@ public class PokemonDAO {
 	}
 
 	/** 삭제 DELETE */
-	// 포켓몬 삭제
+	// 포켓몬 삭
 	public static boolean deletePokemon(String pokemonName) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -155,5 +159,6 @@ public class PokemonDAO {
 		}
 		return false;
 	}
+
 
 }

@@ -28,8 +28,8 @@ public class PokemonBookDAO {
 			while (rset.next()) {
 				list.add(PokemonBookDTO.pokemonBookDTOBuilder()
 						.pokemonBookId(rset.getInt(1))
-						.pokemon(PokemonDAO.getPokemonId(rset.getInt(2)))
-						.owner(OwnerDAO.getOwnerId(rset.getInt(3))).build());
+						.pokemon(PokemonDAO.getPokemon("id", rset.getString(2)))
+						.owner(OwnerDAO.getOwner("id", rset.getString(3))).build());
 			}
 		} finally {
 			DBUtil.close(con, pstmt, rset);
@@ -52,8 +52,8 @@ public class PokemonBookDAO {
 			if (rset.next()) {
 				pokemonBook = PokemonBookDTO.pokemonBookDTOBuilder()
 						.pokemonBookId(rset.getInt(1))
-						.pokemon(PokemonDAO.getPokemonId(rset.getInt(2)))
-						.owner(OwnerDAO.getOwnerId(rset.getInt(3))).build();
+						.pokemon(PokemonDAO.getPokemon("id", rset.getString(2)))
+						.owner(OwnerDAO.getOwner("id", rset.getString(3))).build();
 			}
 		} finally {
 			DBUtil.close(con, pstmt, rset);
@@ -76,8 +76,8 @@ public class PokemonBookDAO {
 			if (rset.next()) {
 				pokemonBook = PokemonBookDTO.pokemonBookDTOBuilder()
 						.pokemonBookId(rset.getInt(1))
-						.pokemon(PokemonDAO.getPokemonId(rset.getInt(2)))
-						.owner(OwnerDAO.getOwnerId(rset.getInt(3))).build();
+						.pokemon(PokemonDAO.getPokemon("id", rset.getString(2)))
+						.owner(OwnerDAO.getOwner("id", rset.getString(3))).build();
 			}
 		} finally {
 			DBUtil.close(con, pstmt, rset);
@@ -101,8 +101,8 @@ public class PokemonBookDAO {
 			if (rset.next()) {
 				pokemonBook = PokemonBookDTO.pokemonBookDTOBuilder()
 						.pokemonBookId(rset.getInt(1))
-						.pokemon(PokemonDAO.getPokemonId(rset.getInt(2)))
-						.owner(OwnerDAO.getOwnerId(rset.getInt(3))).build();
+						.pokemon(PokemonDAO.getPokemon("id", rset.getString(2)))
+						.owner(OwnerDAO.getOwner("id", rset.getString(3))).build();
 			}
 		} finally {
 			DBUtil.close(con, pstmt, rset);
